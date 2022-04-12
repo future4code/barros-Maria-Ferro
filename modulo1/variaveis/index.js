@@ -6,11 +6,11 @@
 
 // 3. horasDia, salarioDia
 
+//EXERCÍCIOS DE ESCRITA DE CÓDIGO
+
 let nome
 let idade
 console.log (typeof nome, idade)
-
-//EXERCÍCIOS DE ESCRITA DE CÓDIGO
 
 //1. d) Foi impresso UNDEFINED, pois não atribuí valores para as minhas variáveis.
 
@@ -26,17 +26,17 @@ console.log ("Olá", novoNome, ", você tem", novaIdade, "anos.")
 
 //EXERCÍCIO 2
 
-console.log("Está chovendo hoje?")
-let estáChovendo = true
-console.log (estáChovendo)
+let perguntaChuva = "Está chovendo hoje?"
+let perguntaOculos = "Você usa óculos?"
+let perguntaCalca = "Você está de calça jeans?"
 
-console.log("Você usa óculos?")
-let usaOculos = false
-console.log (usaOculos)
+let respostaChuva = (prompt(perguntaChuva))
+let respostaOculos = (prompt(perguntaOculos))
+let respostaCalca = (prompt(perguntaCalca))
 
-console.log("Você está de calça jeans?")
-let calcaJeans = true
-console.log (calcaJeans)
+console.log(perguntaChuva, respostaChuva)
+console.log(perguntaOculos, respostaOculos)
+console.log(perguntaCalca, respostaCalca)
 
 //EXERCÍCIO 3
 
