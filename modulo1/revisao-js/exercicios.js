@@ -21,17 +21,44 @@ function retornaArrayOrdenado(array) {
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
+    const pares = array.filter((numero) => {
+        return (numero % 2 === 0)
+    })
+
+    //DESAFIO:
+    // let pares = []
+    // for (let i = 0; i < array.length; i++) {
+    //     if (array[i] % 2 === 0) {
+    //     pares.push(array[i])
+    //     }
+    // }
+    // return pares
 }
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
- 
+    const pares = array.filter((numero) => {
+        return (numero % 2 === 0)
+    })
+    
+    const potencia = pares.map((numero) => {
+        return (Math.pow(numero, 2))
+    })
+
+    return potencia
+
 }
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
-  
+    let maior = -Infinity
+    for (i = 0; i < array.length; i++) {
+        if (array[i] > maior) {
+            maior = array[i]
+        }
+    }
+
+    return maior
 }
 
 // EXERCÍCIO 07
