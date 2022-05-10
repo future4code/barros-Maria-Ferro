@@ -25,6 +25,8 @@ function retornaNumerosPares(array) {
         return (numero % 2 === 0)
     })
 
+    return pares
+
     //DESAFIO:
     // let pares = []
     // for (let i = 0; i < array.length; i++) {
@@ -114,32 +116,75 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-  
+    array.sort((a, b) => a - b)
+
+    let segundos = []
+    segundos.push(array[array.length-2])
+    segundos.push(array[1])
+    
+    return segundos
 }
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-   
+    const elenco = filme.atores.join(", ")
+
+    return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${elenco}.`
 }
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
+    return {...pessoa,
+    nome: "ANÔNIMO"}
    
 }
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
-   
+    const autorizados = pessoas.filter((pessoas) => {
+        return (pessoas.idade > 14 && pessoas.idade <= 60 && pessoas.altura >= 1.5)
+    })
+
+    return autorizados
 }
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-  
+    const naoAutorizados = pessoas.filter((pessoas) => {
+        return (pessoas.idade <= 14 || pessoas.idade > 60 || pessoas.altura < 1.5)
+    })
+
+    return naoAutorizados
 }
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
 
+    const saldoAtualizado = contas.map((conta) => {
+        let totalCompras = 0
+    
+        for (let compra of conta.compras) {
+            totalCompras += compra
+            }
+    
+        return {...conta,
+            saldoTotal: saldoTotal - totalCompras,
+            compras: []}
+    })
+
+    return saldoAtualizado
+
+    // const saldoAtualizado = contas.map((conta) => {
+    //      let totalCompras = 0
+    //      for (let compra of conta.compras) {
+    //          totalCompras += compra
+    //      }
+    //     return {...conta,
+    //     saldoTotal: saldoTotal - totalCompras,
+    //     compra: []}
+    //  })
+
+    // return saldoAtualizado
 }
 
 // EXERCÍCIO 15A
