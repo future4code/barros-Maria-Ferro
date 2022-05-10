@@ -5,7 +5,7 @@
 
 // EXERCÍCIO 01
 function retornaTamanhoArray(array) {
-   return array.length
+    return array.length
 }
 
 // EXERCÍCIO 02
@@ -15,7 +15,8 @@ function retornaArrayInvertido(array) {
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-  
+    array.sort((a, b) => a - b)
+    return array
 }
 
 // EXERCÍCIO 04
