@@ -24,10 +24,30 @@ function retornaArrayInvertido(array) {
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-    array.sort((a, b) => a - b)
-    return array
+    // array.sort((a, b) => a - b)
+    // return array
     
+    //DESAFIO
+    let menor = Infinity
+    let arrayOrdenado = []
+    let tamanho = array.length + 1
 
+    for (let h = 0; h < tamanho; h++) {
+        arrayOrdenado.push(menor)
+        let index = array.indexOf(menor, 0)
+        if(index > -1) {
+            array.splice(index, 1)
+        }
+        menor = Infinity
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] < menor) {
+            menor = array[i]
+            }
+        }
+}
+
+    arrayOrdenado.shift()
+    return arrayOrdenado
     
 }
 
