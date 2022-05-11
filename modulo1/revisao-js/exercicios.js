@@ -11,12 +11,24 @@ function retornaTamanhoArray(array) {
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
     return array.reverse()
+
+    //DESAFIO
+    // let revertido = []
+    // for (let i = 0; i < array.length; i++) {
+    //     revertido[i] = array[array.length-i-1]
+    // }
+
+    // return revertido
+
 }
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
     array.sort((a, b) => a - b)
     return array
+    
+
+    
 }
 
 // EXERCÍCIO 04
@@ -162,37 +174,36 @@ function retornaContasComSaldoAtualizado(contas) {
 
     const saldoAtualizado = contas.map((conta) => {
         let totalCompras = 0
-    
+
         for (let compra of conta.compras) {
             totalCompras += compra
             }
-    
+
         return {...conta,
-            saldoTotal: saldoTotal - totalCompras,
+            saldoTotal: (conta.saldoTotal - totalCompras),
             compras: []}
     })
 
     return saldoAtualizado
-
-    // const saldoAtualizado = contas.map((conta) => {
-    //      let totalCompras = 0
-    //      for (let compra of conta.compras) {
-    //          totalCompras += compra
-    //      }
-    //     return {...conta,
-    //     saldoTotal: saldoTotal - totalCompras,
-    //     compra: []}
-    //  })
-
-    // return saldoAtualizado
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+
+        function comparar (a, b) {
+            if (a.nome < b.nome) {
+                return -1
+            } else if (a.nome > b.nome) {
+                return 1
+            } else {
+                return 0
+            }
+        }
+
+    return consultas.sort(comparar) 
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-   
+
 }
