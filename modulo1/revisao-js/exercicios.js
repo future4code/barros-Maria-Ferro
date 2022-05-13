@@ -191,41 +191,50 @@ function retornaPessoasNaoAutorizadas(pessoas) {
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
+    for (let i = 0; i < contas.length; i++) {
+        let comprasTotal = contas[i].compras.reduce(function(comprasTotal, valor) {
+            return comprasTotal + valor
+          }, 0)
+          contas[i].saldoTotal -= comprasTotal
+          contas[i].compras = []
+          comprasTotal = 0
+        }
 
-    const saldoAtualizado = contas.map((conta) => {
-        let totalCompras = 0
+    return contas
+    
+    //OBS: Eu havia feito esse método abaixo com o map, deu certo mas ele retornava uma nova array, não a mesma. Então estudei o método reduce e consegui fazer pelo método acima e deu certo também.
+    // const saldoAtualizado = contas.map((conta) => {
+    //     let totalCompras = 0
 
-        for (let compra of conta.compras) {
-            totalCompras += compra
-            }
+    //     for (let compra of conta.compras) {
+    //         totalCompras += compra
+    //         }
 
-        return {...conta,
-            saldoTotal: (conta.saldoTotal - totalCompras),
-            compras: []}
-    })
+    //     return {...conta,
+    //         saldoTotal: (conta.saldoTotal - totalCompras),
+    //         compras: []}
+    // })
 
-    return saldoAtualizado
+    // return saldoAtualizado
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-
-        function comparar (a, b) {
-            if (a.nome < b.nome) {
-                return -1
-            } else if (a.nome > b.nome) {
-                return 1
-            } else {
-                return 0
-            }
+    function comparar (a, b) {
+        if (a.nome < b.nome) {
+            return -1
+        } else if (a.nome > b.nome) {
+            return 1
+        } else {
+            return 0
         }
+    }
 
     return consultas.sort(comparar) 
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-
     for (let i = 0; i < consultas.length; i++) {
         consultas[i].dataDaConsulta = consultas[i].dataDaConsulta.split("/")
     }
@@ -243,7 +252,6 @@ function retornaArrayOrdenadoPorData(consultas) {
             consultas.sort(comparar)
         }
     
-
     for (let i = 0; i < consultas.length; i++) {
         consultas[i].dataDaConsulta = consultas[i].dataDaConsulta.join("/")    
     }
