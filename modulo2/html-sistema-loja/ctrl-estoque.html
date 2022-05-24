@@ -5,67 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <p><font color="#BC8F8F">### PAPELARIA SATURNO ###</font></p>
-    </header>
-    
+        <h1>P A P E L A R I A <img src="/img/saturno.gif" alt="gif saturno"> S A T U R N O</h1>
+        <p class="texto-simples">Aqui você encontra todos os melhores produtos de papelaria!</p>
     <nav>
         <a href="index.html">Página Inicial |</a>
         <a href="ctrl-estoque.html">Controle de Estoque |</a>
         <a href="add-produto.html">Adicionar Produto |</a>
         <a href="funcionarios.html">Funcionários</a>
     </nav>
+    </header>
 
     <h2>Controle de Estoque</h2>
 
-    <table>
-        <tr>
-            <th>Foto</th>
-            <th>Descrição</th>
-            <th>Preço (R$)</th>
-            <th>Quantidade disponível</th>
+    <table class="estoque">
+       <tr>
+            <th class="texto-simples">Foto</th>
+            <th class="texto-simples">Descrição</th>
+            <th class="texto-simples">Preço (R$)</th>
+            <th class="texto-simples">Quantidade disponível</th>
         </tr>
 
         <tr>
             <td><img src="img/lap-colorida.jpg" alt="Lapiseira Colorida" width="120px"></td>
-            <td> Lapiseira Colorida </td>
-            <td align="right">2,50</td>
-            <td align="center"> 10 unidades </td>
+            <td class="texto-simples"> Lapiseira Colorida </td>
+            <td class="texto-simples right">2,50</td>
+            <td class="texto-simples center"> 10 unidades </td>
         </tr>
 
         <tr>
             <td><img src="img/borracha-morango.jpg" alt="Borracha Morango" width="120px"></td>
-            <td> Borracha Morango </td>
-            <td align="right">3,00 </td>
-            <td align="center"> 15 unidades </td>
+            <td class="texto-simples"> Borracha Morango </td>
+            <td class="texto-simples right">3,00 </td>
+            <td class="texto-simples center"> 15 unidades </td>
         </tr>
 
         <tr>
             <td><img src="img/caneta-glitter.jpg" alt="Caneta com Glitter" width="120px"></td>
-            <td> Caneta com Glitter </td>
-            <td align="right"> 5,50 </td>
-            <td align="center"> 12 unidades </td>
+            <td class="texto-simples"> Caneta com Glitter </td>
+            <td class="texto-simples right"> 5,50 </td>
+            <td class="texto-simples center"> 12 unidades </td>
         </tr>
 
         <tr>
             <td><img src="img/apontador-coracao.jpeg" alt="Apontador Coração" width="120px"></td>
-            <td> Apontador Coração </td>
-            <td align="right"> 4,00 </td>
-            <td align="center"> 7 unidades </td>
+            <td class="texto-simples"> Apontador Coração </td>
+            <td class="texto-simples right"> 4,00 </td>
+            <td class="texto-simples center"> 7 unidades </td>
         </tr>
         
         <!-- Crie mais uma linha desta tabela abaixo \/ -->
 
         <tr>
             <td><img src="img/lapis-doguinho.jpg" alt="Lápis Doguinhos" width="120px"></td>
-            <td> Lápis Doguinhos </td>
-            <td align="right"> 1,50 </td>
-            <td align="center"> 25 unidades</td>
+            <td class="texto-simples">Lápis Doguinhos </td>
+            <td class="texto-simples right"> 1,50 </td>
+            <td class="texto-simples center"> 25 unidades</td>
         </tr>
 
     </table>
+
+    <footer>
+        <p class="texto-simples">Siga-nos nas redes sociais!</p><br>
+        <div class="icones">
+        <img src="img/twitter.png"/>
+        <img src="img/instagram.png"/>
+        <img src="img/tiktok.png"/>
+        </div><br><br>
+        <p class="texto-simples">™ Papelaria Saturno</p>
+    </footer>
 
 </body>
 </html>
