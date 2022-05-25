@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate&family=Zen+Loop&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-size: 100%;
+    height: 100%;
+    width: 100%;
+    background: #f4f5de;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    padding: 8px;
+    gap: 8px;
+}
+
+h1 > img {
+    width: 100px;
+}
+
+h2 {
+    text-align: center;
+    color: #f2bd76;
+    text-shadow: 1px 1px #4c3d31;
+    font-family: 'Zen Loop', cursive;
+}
+
+.texto-simples {
+    font-family: 'Mate', serif;
+    font-weight: bold;
+    color: #4c3d31;
+}
+
+h1 {
+    color: #f2bd76;
+    text-shadow: 1px 1px #4c3d31;
+    font-family: 'Zen Loop', cursive;
+    font-size: 350%;
+}
+
+nav {
+    color: #4c3d31;
+    margin-top: 8px;
+    padding: 8px;
+    font-family: 'Mate', serif;
+    border-bottom: 1px solid #4c3d31;
+}
+
+a:visited {
+    color: #4c3d31;
+}
+
+a:hover {
+    color: #f2bd76;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.loja {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 16px 98px;
+}
+
+.produtos {
+    height: 300px;
+    width: 250px;
+    padding: 16px;
+    margin: 24px 24px;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    background-color: white;
+}
+
+.produtos > img {
+    display: block;
+    margin: 0 auto;
+    height: 180px;
+    opacity: 75%;
+}
+
+.produtos > img:hover {
+    opacity: 100%;
+    cursor: pointer;
+}
+
+.funcionarios {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    gap: 8px;
+}
+
+.nome-funcionario > img {
+    height: 100px;
+}
+
+.nome-funcionario {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 16px;
+    height: 150px;
+    width: 450px;
+    padding: 16px;
+    margin: 8px;
+    border-radius: 3%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.texto-funcionario {
+    color: #4c3d31;
+    margin-top: 28px;
+    margin-left: -62px;
+    padding: 8px;
+    font-family: 'Mate', serif;
+    text-align: justify;
+}
+
+.adicionar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    gap: 8px;
+    padding: 8px;
+    border: 1px dotted #4c3d31;
+}
+
+button {
+    background-color: #f2bd76;
+    width: 200px;
+    padding: 8px;
+    font-family: 'Mate', serif;
+    font-weight: bold;
+    color: #4c3d31;
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color:#c4ceb0;
+}
+
+.estoque {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    padding: 8px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    background-color: #c4ceb0;
+    border-top: 1px dotted #4c3d31;
+    padding: 24px;
+}
+
+.icones {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
