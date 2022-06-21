@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+  color:palevioletred;
+}
+
+.App-header {
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color:palevioletred;
+}
+
+.Foto-perfil {
+  height: 40vmin;
+  pointer-events: none;
+  padding: 5px;
+  border: solid 1px palevioletred;
+}
+
+.Botao {
+  padding: 5px;
+  color: white;
+  background-color: palevioletred;
+  border: 2px solid palevioletred;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.Botao:hover {
+  cursor: pointer;
+}
+
+.Botao:active {
+  transform: scale(0.98);
+}
