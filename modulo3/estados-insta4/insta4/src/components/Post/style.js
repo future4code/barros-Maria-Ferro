@@ -13,7 +13,6 @@ export const PostHeader = styled.div`
     padding-left: 10px;
 `
 
-
 export const PostFooter = styled.div`
     height: 40px;
     display: flex;
