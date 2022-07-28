@@ -42,9 +42,9 @@ function ListaUsuários(props) {
 
     const [nomeUsuario, setNomeUsuario] = useState("")
     const [emailUsuario, setEmailUsuario] = useState("")
-    const [mostrarDetalhes, setMostrarDetalhes] = useState("")
+    const [mostrarDetalhes, setMostrarDetalhes] = useState(false)
 
-    const infoDetalhes = <Detalhes nome={nomeUsuario} email={emailUsuario} fechar={() => {setMostrarDetalhes("")}}/>
+    const infoDetalhes = <Detalhes nome={nomeUsuario} email={emailUsuario} fechar={() => {setMostrarDetalhes(false)}}/>
 
     const getUserById = (usuarioId) => {
 
@@ -56,7 +56,7 @@ function ListaUsuários(props) {
         .then((response) => {
             setNomeUsuario(response.data.name)
             setEmailUsuario(response.data.email)
-            setMostrarDetalhes(infoDetalhes)
+            setMostrarDetalhes(true)
         })
         .catch((error) => {
             console.log(error.response.data)
@@ -103,7 +103,7 @@ function ListaUsuários(props) {
             <br/>
             <button onClick={voltarInicio}>Voltar</button>
         </ListaUsuáriosPg>
-        {mostrarDetalhes}
+        {mostrarDetalhes && infoDetalhes}
         </div>
     )
 }
