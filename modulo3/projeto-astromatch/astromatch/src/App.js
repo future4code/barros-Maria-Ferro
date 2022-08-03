@@ -12,19 +12,20 @@ function App() {
       }
     })
     .then((response) => {
-      alert("Matches e perfis resetados com sucesso!")
+      window.alert("Matches e perfis resetados com sucesso!")
       window.location.reload()
     })
     .catch((error) => {
       console.log(error.response.data)
     })
+
   }
 
   return (
     <div>
     <GlobalStyle/>
     <Página>
-      <SeletorPágina/>
+      <SeletorPágina fimperfis={Clear}/>
       <BotaoLimpar onClick={Clear}>Limpar Swipes e Matches</BotaoLimpar>
     </Página>
     </div>

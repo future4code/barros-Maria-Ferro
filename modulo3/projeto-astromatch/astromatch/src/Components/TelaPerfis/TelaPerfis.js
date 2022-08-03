@@ -14,6 +14,7 @@ function TelaPerfis(props) {
   const [tamanhoImagem, setTamanhoImagem] = useState("45%")
 
   const getProfileToChoose = () => {
+
     axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/maria-ferro-barros/person", {
       headers: {"Access-Control-Allow-Origin": "*"} 
     })
@@ -31,6 +32,12 @@ function TelaPerfis(props) {
   useEffect (() => {
     getProfileToChoose()
   }, [])
+
+  if (infoPerfil === null) {
+    props.fimperfis()
+    window.alert("Sem novos perfis disponíveis! A página será reiniciada.")
+    getProfileToChoose()
+  }
 
   // CHOOSE PERSON
 

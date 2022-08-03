@@ -3,11 +3,12 @@ import { useState } from "react";
 import TelaPerfis from "../TelaPerfis/TelaPerfis";
 import TelaMatches from "../TelaMatches/TelaMatches";
 
-function SeletorPágina() {
+function SeletorPágina(props) {
+
     const [página, setPágina] = useState(false)
 
     if (!página) {
-        return <TelaPerfis estado={setPágina}/>
+        return <TelaPerfis estado={setPágina} fimperfis={props.fimperfis}/>
     } else {
         return <TelaMatches estado={setPágina}/>
     }
