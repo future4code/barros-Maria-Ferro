@@ -3,9 +3,11 @@ import {TelaPrincipal, TelaHeader, ListaMatches, AvatarContainer, Avatar, Perfil
 import listprofiles from "../../img/list-profiles.png"
 import axios from "axios";
 
-function TelaMatches(props) {
+function TelaMatches (props) {
 
     const [lista, setLista] = useState([])
+
+    const { setPágina } = props
 
     const GetMatches = () => {
         axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/maria-ferro-barros/matches")
@@ -30,15 +32,11 @@ function TelaMatches(props) {
         GetMatches()
       }, [])
 
-    const trocarPágina = () => {
-        props.estado(false)
-      }
-
     return (
         <TelaPrincipal>
             <TelaHeader>
             <p><span>astro</span><span>match</span></p>
-            <button onClick={trocarPágina}><img src={listprofiles} alt="Botão para trocar para a tela principal"></img></button>
+            <button onClick={() => setPágina(false)}><img src={listprofiles} alt="Botão para trocar para a tela principal"></img></button>
             </TelaHeader>
             <ListaMatches>
                 {lista}

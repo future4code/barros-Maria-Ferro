@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import loader from "../../img/Loader.svg"
 
-function TelaPerfis(props) {
+function TelaPerfis (props) {
 
   // GET PROFILE
 
@@ -12,6 +12,9 @@ function TelaPerfis(props) {
   const [infoPerfil, setInfoPerfil] = useState([])
   const [mostrarInfo, setMostrarInfo] = useState("none")
   const [tamanhoImagem, setTamanhoImagem] = useState("45%")
+
+  const { Clear } = props
+  const { setPágina } = props
 
   const getProfileToChoose = () => {
 
@@ -33,11 +36,17 @@ function TelaPerfis(props) {
     getProfileToChoose()
   }, [])
 
-  if (infoPerfil === null) {
-    props.fimperfis()
-    window.alert("Sem novos perfis disponíveis! A página será reiniciada.")
-    getProfileToChoose()
-  }
+  useEffect (() => {
+    (() => {
+      if(infoPerfil === null) {
+        Clear().then(() => {
+          if(window.confirm("Sem novos perfis disponíveis! A página será reiniciada.")){
+            getProfileToChoose()
+          }
+        })
+      }
+    })()
+  }, [infoPerfil, Clear])
 
   // CHOOSE PERSON
 
@@ -83,16 +92,13 @@ function TelaPerfis(props) {
 
   // FUNÇÃO TROCAR DE PÁGINA
 
-  const trocarPágina = () => {
-    props.estado(true)
-  }
-
   return (
     <TelaPrincipal>
         <TelaHeader>
           <p><span>astro</span><span>match</span></p>
-          <button onClick={trocarPágina}><img src={listmatches} alt="Botão para trocar para a lista de matches"></img></button>
+          <button onClick={() => setPágina(true)}><img src={listmatches} alt="Botão para trocar para a lista de matches"></img></button>
         </TelaHeader>
+        {infoPerfil && <>
         <TelaFoto tamanhoImagem={tamanhoImagem}>
           <img src={fotoPerfil} alt={infoPerfil.photo_alt}></img>
           <TelaInfo mostrarInfo={mostrarInfo}>
@@ -104,6 +110,8 @@ function TelaPerfis(props) {
           <BotaoDislike onClick={onClickDislike}>X</BotaoDislike>
           <Botao onClick={onClickLike}>♥</Botao>
         </TelaBotoes>
+        </>
+        }
     </TelaPrincipal>
   )
 }
