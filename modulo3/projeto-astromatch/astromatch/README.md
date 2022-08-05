@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Projeto Astromatch - React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projeto desenvolvido por Maria Fernandez de Moura Ferro como parte da fixação de conteúdo de ReactJS do curso de Web Full Stack da Labenu.
 
-## Available Scripts
+# Conteúdo
 
-In the project directory, you can run:
+<ul>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#sobre"> Sobre </a> </li>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#se%C3%A7%C3%B5es-e-funcionalidades"> Seções </a> </li>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#link-do-surge"> Link do Surge </a> </li>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#tecnologias-utilizadas"> Tecnologias Utilizadas </a> </li>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#imagens-do-site"> Imagens do Site </a> </li>
+</ul>
 
-### `npm start`
+# Sobre
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Este projeto consiste em um clone simples do Tinder, o Astromatch, utilizando de uma API fornecida pela Labenu.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Seções e Funcionalidade
 
-### `npm test`
+## Tela Principal - Página de Perfis
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A página apresenta um perfil, com nome, foto, idade e uma biografia, e permite que o usuário escolha se quer tentar dar "match" ou não, escolhendo o botão verde ou vermelho. Após a escolha, a página abre o perfil seguinte e assim por diante. 
 
-### `npm run build`
+## Tela Secundária - Página de Matches
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clicando no botão no canto superior direito, é possível passar para a página de Matches. Nesta página, haverá uma lista de perfis que derão Match. Para o match acontecer, dependemos de dois fatores: o usuário precisa clica no botão verde, e o retorno da API para a função específica deve ser positivo. O retorno da API é aleatório.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Botão Limpar Swipes e Matches
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ambas as telas possuem um botão que permite limpar a lista de matches e resetar os perfis visualizados. A API fornece uma lista limitada de perfis que rodam aleatoriamente, até certo ponto. Quando a lista chega ao fim, o site abre um aviso ao usuário informando que os perfis acabaram, que a lista será limpa e a página será recarregada.
 
-### `npm run eject`
+# Link do Surge
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+http://tawdry-cloud.surge.sh/
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Tecnologias Utilizadas
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<ul>
+    <li> React </li>
+    <li> HTML </li>
+    <li> CSS </li>
+    <li> JavaScript </li>
+</ul>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Imagens do Site
