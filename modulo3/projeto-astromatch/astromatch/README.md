@@ -5,11 +5,11 @@ Projeto desenvolvido por Maria Fernandez de Moura Ferro como parte da fixação 
 # Conteúdo
 
 <ul>
-  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#sobre"> Sobre </a> </li>
-  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#se%C3%A7%C3%B5es-e-funcionalidades"> Seções </a> </li>
-  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#link-do-surge"> Link do Surge </a> </li>
-  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#tecnologias-utilizadas"> Tecnologias Utilizadas </a> </li>
-  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/atromatch#imagens-do-site"> Imagens do Site </a> </li>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/projeto-astromatch/astromatch#sobre"> Sobre </a> </li>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/projeto-astromatch/astromatch#se%C3%A7%C3%B5es-e-funcionalidades"> Seções </a> </li>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/projeto-astromatch/astromatch#link-do-surge"> Link do Surge </a> </li>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/projeto-astromatch/astromatch#tecnologias-utilizadas"> Tecnologias Utilizadas </a> </li>
+  <li> <a href="https://github.com/future4code/barros-Maria-Ferro/tree/master/modulo3/projeto-astromatch/astromatch#imagens-do-site"> Imagens do Site </a> </li>
 </ul>
 
 # Sobre
@@ -44,3 +44,7 @@ http://tawdry-cloud.surge.sh/
 </ul>
 
 # Imagens do Site
+
+![image](https://user-images.githubusercontent.com/102297204/183167018-8391e05b-a2c5-4800-ad22-43cff3d05978.png)
+![image](https://user-images.githubusercontent.com/102297204/183168052-a567ce19-1dd8-4a17-810b-3e340d719091.png)
+![image](https://user-images.githubusercontent.com/102297204/183168499-ba60679f-2ee7-479c-bdd4-50e40fce3c4d.png)
