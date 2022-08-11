@@ -11,9 +11,9 @@ function TripDetails() {
     const pathParams = useParams();
     const tripId = pathParams.id
 
-    const [trip, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
+    const [dataTrip, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
 
-    const definePage = trip && trip.filter((trip) => {
+    const definePage = dataTrip && dataTrip.trips.filter((trip) => {
        return tripId === trip.id
     })
 
@@ -25,8 +25,8 @@ function TripDetails() {
         <TripDetailsContainer>
         {isLoading && <img src={Loading} alt="Carregando"/>}
         {!isLoading && error && <p>Ocorreu um erro.</p>}
-        {!isLoading && trip && trip.length > 0 && <span>{title}</span>}
-        {!isLoading && trip && trip.length === 0 && <p>Nenhuma viagem disponível.</p>}
+        {!isLoading && dataTrip && dataTrip.trips.length > 0 && <span>{title}</span>}
+        {!isLoading && dataTrip && dataTrip.trips.length === 0 && <p>Nenhuma viagem disponível.</p>}
         <Title>Candidatos Pendentes</Title>
         <Title>Candidatos Aprovados</Title>
         </TripDetailsContainer>

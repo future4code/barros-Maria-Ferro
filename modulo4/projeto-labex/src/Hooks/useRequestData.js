@@ -11,7 +11,7 @@ export function useRequestData(url) {
         axios.get(url)
         .then((response) => {
             setIsLoading(false)
-            setData(response.data.trips)
+            setData(response.data)
         })
         .catch((error) => {
             setIsLoading(false)

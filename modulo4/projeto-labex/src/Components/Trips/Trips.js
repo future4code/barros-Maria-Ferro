@@ -6,9 +6,9 @@ import { BASE_URL } from "../../Constants/Constants";
 
 function Trips() {
 
-    const [trips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
+    const [dataTrips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
 
-        const tripsList = trips && trips.map((trip) => {
+        const tripsList = dataTrips && dataTrips.trips.map((trip) => {
             return (
                 <TripContainer key={trip.id}>
                     <li>
@@ -25,12 +25,12 @@ function Trips() {
         <div>
         {isLoading && <img src={Loading} alt="Carregando"/>}
         {!isLoading && error && <p>Ocorreu um erro.</p>}
-        {!isLoading && trips && trips.length > 0 && (
+        {!isLoading && dataTrips && dataTrips.trips.length > 0 && (
             <AllTripsContainer>
                 <ul>{tripsList}</ul>
             </AllTripsContainer>
         )}
-        {!isLoading && trips && trips.length === 0 && <p>Nenhuma viagem disponível.</p>}
+        {!isLoading && dataTrips && dataTrips.trips.length === 0 && <p>Nenhuma viagem disponível.</p>}
         </div>
     )
 }

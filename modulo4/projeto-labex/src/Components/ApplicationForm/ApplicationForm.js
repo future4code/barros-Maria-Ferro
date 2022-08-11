@@ -12,7 +12,7 @@ function ApplicationForm() {
 
     const navigate = useNavigate()
 
-    const [trips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
+    const [dataTrips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
 
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
@@ -59,7 +59,7 @@ function ApplicationForm() {
 
     // RENDERIZAR OPÇÕES DE VIAGENS E PAÍSES NO FORMULÁRIO
 
-    const tripsList = trips && trips.map((trip) => {
+    const tripsList = dataTrips && dataTrips.trips.map((trip) => {
         return (
             <option key={trip.id} value={trip.id}> {trip.name} </option>
         )
@@ -86,13 +86,13 @@ function ApplicationForm() {
                     <option>Ocorreu um erro.</option>
                 </select>
             )}
-            {!isLoading && trips && trips.length > 0 && (
+            {!isLoading && dataTrips && dataTrips.trips.length > 0 && (
                 <select value={inputId} onChange={(e) => (setInputId(e.target.value))}>
                     <option defaultValue={"Selecione uma viagem"}>Selecione uma viagem</option>
                     {tripsList}
                 </select>
             )}
-            {!isLoading && trips && trips.length === 0 && (
+            {!isLoading && dataTrips && dataTrips.trips.length === 0 && (
                 <select value={inputId} onChange={(e) => (setInputId(e.target.value))}>
                     <option defaultValue={"Selecione uma viagem"}>Selecione uma viagem</option>
                     <option>Nenhuma viagem disponível.</option>
