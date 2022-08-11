@@ -4,8 +4,10 @@ export const GlobalStyle = createGlobalStyle`
 
     :root {
     --pink: #D45EAB;
-    --soft-white: #f2f2f2;
+    --soft-pink: #FFE6F6;
+    --soft-white: #FBFAF5;
     --dark-gray: #444444;
+    --soft-gray: #C3C0C0;
     }
 
     body {
@@ -38,7 +40,7 @@ export const Button = styled.button`
     width: 120px;
     padding: 15px;
     border: solid 1px var(--pink);
-    box-shadow: 3px 1px 8px #aaa;
+    box-shadow: 1px 3px 5px #aaa;
 
     :hover {
         cursor: pointer;
@@ -56,4 +58,6 @@ export const ButtonsDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;`
+    gap: 15px;
+    margin: 25px;
+    `

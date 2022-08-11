@@ -1,12 +1,18 @@
 import React from "react";
-import { Pages, Title } from "./style";
+import TripDetails from "../Components/TripDetails/TripDetails";
+import { Button, ButtonsDiv, Pages } from "./style";
+import { useNavigate } from "react-router-dom";
 
 function TripDetailsPage() {
 
+    const navigate = useNavigate()
+
     return (
         <Pages>
-            <Title>Candidatos Pendentes</Title>
-            <Title>Candidatos Aprovados</Title>
+            <TripDetails/>
+            <ButtonsDiv>
+            <Button onClick={() => navigate(-1)}>Voltar</Button>
+            </ButtonsDiv>
         </Pages>
     )
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import { ButtonsDiv, Button, Pages, Title } from "./style";
 import { useNavigate } from "react-router-dom";
+import ManageTrips from "../Components/ManageTrips/ManageTrips";
+
 
 function AdminHomePage() {
 
@@ -14,6 +16,7 @@ function AdminHomePage() {
                 <Button onClick={() => navigate("/admin/trips/create")}>Criar Viagem</Button>
                 <Button>Logout</Button>
             </ButtonsDiv>
+            <ManageTrips/>
         </Pages>
     )
 }

@@ -1,13 +1,18 @@
 import React from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AppForm } from "./style";
 import { useNavigate } from "react-router-dom";
 import { ButtonsDiv, Button } from "../../Pages/style";
+import { useRequestData } from "../../Hooks/useRequestData";
+import CountriesList from '../CountriesList.json'
+import { BASE_URL } from "../../Constants/Constants";
 
 function ApplicationForm() {
 
     const navigate = useNavigate()
+
+    const [trips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
 
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
@@ -15,6 +20,7 @@ function ApplicationForm() {
     const [profession, setProfession] = useState("")
     const [country, setCountry] = useState("")
     const [inputId, setInputId] = useState("")
+    const [countries] = useState(CountriesList)
 
     const ApplyToTrip = (tripId) => {
 
@@ -40,54 +46,69 @@ function ApplicationForm() {
         })
     }
 
-    const [tripsOptions, setTripsOptions] = useState("")
+    // FUNÇÃO BOTÃO DE ENVIAR FORMULÁRIO
 
-    const GetTrips = () => {
-        axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/maria-ferro-barros/trips")
-        .then((response) => {
-
-            const getTripsList = response.data.trips
-
-            const trips = getTripsList.map((trip) => {
-                return (
-                    <option key={trip.id} value={trip.id}> {trip.name} </option>
-                )
-            })
-
-            setTripsOptions(trips)
-        })
-        .catch((error) => {
-            console.log(error.response.data)
-        })
-    }
-
-    useEffect (() => {
-        GetTrips()
-      }, [])
-
-      const onClickApply = (id) => {
+    const onClickApply = (id) => {
         setName("")
         setAge("")
         setApplicationText("")
         setProfession("")
         setCountry("")
         ApplyToTrip(id)
-      }
+    }
 
-    return (
+    // RENDERIZAR OPÇÕES DE VIAGENS E PAÍSES NO FORMULÁRIO
+
+    const tripsList = trips && trips.map((trip) => {
+        return (
+            <option key={trip.id} value={trip.id}> {trip.name} </option>
+        )
+    })
+
+    const listOfCountries = countries.map((item) => {
+        return (
+            <option key={item.sigla} value={item.nome_pais}> {item.nome_pais} </option>
+        )
+    })
     
+    return (
         <div>
         <AppForm>
-            <select value={inputId} onChange={(e) => (setInputId(e.target.value))} placeholder="Selecione uma viagem">
-                <option defaultValue={"Selecione uma viagem"}>Selecione uma viagem</option>
-                {tripsOptions}
-            </select>
+            {isLoading && (
+                <select value={inputId} onChange={(e) => (setInputId(e.target.value))}>
+                    <option defaultValue={"Selecione uma viagem"}>Selecione uma viagem</option>
+                    <option>Carregando...</option>
+                </select>
+            )}
+            {!isLoading && error && (
+                <select value={inputId} onChange={(e) => (setInputId(e.target.value))}>
+                    <option defaultValue={"Selecione uma viagem"}>Selecione uma viagem</option>
+                    <option>Ocorreu um erro.</option>
+                </select>
+            )}
+            {!isLoading && trips && trips.length > 0 && (
+                <select value={inputId} onChange={(e) => (setInputId(e.target.value))}>
+                    <option defaultValue={"Selecione uma viagem"}>Selecione uma viagem</option>
+                    {tripsList}
+                </select>
+            )}
+            {!isLoading && trips && trips.length === 0 && (
+                <select value={inputId} onChange={(e) => (setInputId(e.target.value))}>
+                    <option defaultValue={"Selecione uma viagem"}>Selecione uma viagem</option>
+                    <option>Nenhuma viagem disponível.</option>
+                </select>
+            )}
+
             <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome"/>
             <input value={age} onChange={(e) => setAge(e.target.value)} placeholder="Idade"/>
             <input value={applicationText} onChange={(e) => setApplicationText(e.target.value)} placeholder="Texto de Candidatura"/>
             <input value={profession} onChange={(e) => setProfession(e.target.value)} placeholder="Profissão"/>
-            <input value={country} onChange={(e) => setCountry(e.target.value)} placeholder="País"/>
+            <select value={country} onChange={(e) => (setCountry(e.target.value))}>
+                <option defaultValue={"Selecione um país"}>País</option>
+                {listOfCountries}
+            </select>
         </AppForm>
+        
         <ButtonsDiv>
             <Button onClick={() => navigate(-1)}>Voltar</Button>
             <Button onClick={() => onClickApply(inputId)}>Enviar</Button>

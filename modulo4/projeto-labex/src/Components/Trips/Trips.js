@@ -1,48 +1,38 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { AllTripsContainer, TripContainer } from "./style";
+import { useRequestData } from "../../Hooks/useRequestData";
+import Loading from '../../Images/Loading-Labex.svg'
+import { BASE_URL } from "../../Constants/Constants";
 
-function Trip() {
+function Trips() {
 
-    const [tripsList, setTripsList] = useState("")
+    const [trips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
 
-    const GetTrips = () => {
-        axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/maria-ferro-barros/trips")
-        .then((response) => {
-
-            const getTripsList = response.data.trips
-
-            const trips = getTripsList.map((trip, index) => {
-                return (
-                    <TripContainer>
-                    <li key={trip.id}>
-                    <p><span>Nome:</span> {trip.name}</p>
-                    <p><span>Descrição:</span> {trip.description}</p>
-                    <p><span>Planeta:</span> {trip.planet}</p>
-                    <p><span>Duração:</span> {trip.durationInDays} dias</p>
-                    <p><span>Data:</span> {trip.date}</p>
+        const tripsList = trips && trips.map((trip) => {
+            return (
+                <TripContainer key={trip.id}>
+                    <li>
+                        <p>{trip.name}</p>
+                        <p>{trip.description}</p>
+                        <p>{trip.planet}</p>
+                        <p>{trip.durationInDays} dias | {trip.date}</p>
                     </li>
-                    </TripContainer>
-                )
-            })
-
-            setTripsList(trips)
-
+                </TripContainer>
+            )
         })
-        .catch((error) => {
-            console.log(error.response.data)
-        })
-    }
-
-    useEffect (() => {
-        GetTrips()
-      }, [])
 
     return (
-        <AllTripsContainer>
-            <ul>{tripsList}</ul>
-        </AllTripsContainer>
+        <div>
+        {isLoading && <img src={Loading} alt="Carregando"/>}
+        {!isLoading && error && <p>Ocorreu um erro.</p>}
+        {!isLoading && trips && trips.length > 0 && (
+            <AllTripsContainer>
+                <ul>{tripsList}</ul>
+            </AllTripsContainer>
+        )}
+        {!isLoading && trips && trips.length === 0 && <p>Nenhuma viagem disponível.</p>}
+        </div>
     )
 }
 
-export default Trip
+export default Trips

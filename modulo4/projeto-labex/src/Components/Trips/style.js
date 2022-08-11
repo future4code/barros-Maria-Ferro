@@ -1,29 +1,59 @@
 import styled from "styled-components";
 
 export const AllTripsContainer = styled.div`
-    margin-top: 10px;
+    margin-top: 20px;
+    background-color: var(--soft-pink);
+    border-radius: 10px;
 
     ul {
         list-style: none;
         display: flex;
         flex-direction: column;
         gap: 15px;
-    }
+        padding: 15px;
+        }
 `
 
 export const TripContainer = styled.div`
-    width: 50vw;
-    padding: 15px;
+    width: 40vw;
     display: flex;
-    box-shadow: 3px 1px 5px #aaa;
+    justify-content: center;
+    margin: 10px;
+    background-color: var(--soft-white);
+    border-radius: 10px;
+    border: 1px solid var(--soft-white);
 
     li {
         list-style: none;
         color: var(--dark-gray);
+        font-family: 'Merriweather', serif;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 25px;
 
-        span {
+        p:nth-child(1) {
+            font-weight: 900;
+        }
+
+        p:nth-child(2) {
+            font-size: 0.8rem;
+        }
+
+        p:nth-child(3) {
+            font-weight: 700;
             color: var(--pink)
         }
+
+        p:nth-child(4) {
+            font-size: 0.8rem;
+            font-weight: 900;
+        }
+
+    }
+
+    :hover {
+        background-color: var(--soft-pink);
+        border: 1px solid #aaa;
     }
 
 `

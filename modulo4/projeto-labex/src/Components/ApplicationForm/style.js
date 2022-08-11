@@ -6,6 +6,7 @@ export const AppForm = styled.form`
     flex-direction: column;
     gap: 15px;
     margin: 15px;
+    margin-bottom: 25px;
 
     input, select {
         width: 100%;
