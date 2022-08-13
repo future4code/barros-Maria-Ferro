@@ -12,7 +12,7 @@ export const AppForm = styled.form`
         width: 100%;
         padding: 15px;
         color: var(--dark-gray);
-        background-color: var(--soft-white);
+        background-color: var(--yellow);
         border-radius: 10px;
         border: none;
     }

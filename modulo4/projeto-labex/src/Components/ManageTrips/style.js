@@ -4,23 +4,23 @@ export const ManageTripContainer = styled.div`
     width: 40vw;
     display: flex;
     margin: 10px;
-    background-color: var(--soft-white);
+    background-color: var(--soft-blue);
     border-radius: 10px;
+    border: 1px solid var(--dark-blue);
 
-        a {
-            text-decoration: none;
-            color: var(--dark-gray);
+    a {
+        text-decoration: none;
+        color: var(--dark-blue);
 
-            :hover {
-                color: var(--dark-gray);
-                opacity: 85%;
-                transition: all 0.5s;
-            }
-
-            :active {
-                color: var(--dark-gray);
-            }
+        :hover {
+            opacity: 85%;
+            transition: all 0.5s;
         }
+
+        :active {
+            color: var(--dark-blue);
+        }
+    }
 
     li {
         display: grid;
@@ -30,12 +30,12 @@ export const ManageTripContainer = styled.div`
         padding: 35px;
         align-items: center;
         width: 35vw;
-        grid-template-columns: 80% 20%;
+        grid-template-columns: 85% 15%;
 
         button {
             border: none;
             align-self: center;
-            background-color: var(--soft-white);
+            background-color: var(--soft-blue);
 
             :hover {
                 cursor: pointer;
@@ -44,7 +44,7 @@ export const ManageTripContainer = styled.div`
             }
 
             img {
-                background-color: var(--soft-white);
+                background-color: var(--soft-blue);
             }
         }
     }
@@ -52,5 +52,10 @@ export const ManageTripContainer = styled.div`
     :hover {
         box-shadow: 1px 3px 5px #aaa;
         cursor: pointer;
+        background-color: var(--yellow);
+
+        img {background-color: var(--yellow);}
+        button {background-color: var(--yellow);}
+
     }
 `

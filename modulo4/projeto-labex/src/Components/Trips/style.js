@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const AllTripsContainer = styled.div`
     margin-top: 20px;
-    background-color: var(--soft-pink);
+    background-color: var(--soft-blue);
     border-radius: 10px;
 
     ul {
@@ -19,13 +19,13 @@ export const TripContainer = styled.div`
     display: flex;
     justify-content: center;
     margin: 10px;
-    background-color: var(--soft-white);
+    background-color: var(--soft-blue);
     border-radius: 10px;
-    border: 1px solid var(--soft-white);
+    border: 1px solid var(--dark-blue);
 
     li {
         list-style: none;
-        color: var(--dark-gray);
+        color: var(--dark-blue);
         font-family: 'Merriweather', serif;
         text-transform: uppercase;
         text-align: center;
@@ -41,7 +41,6 @@ export const TripContainer = styled.div`
 
         p:nth-child(3) {
             font-weight: 700;
-            color: var(--pink)
         }
 
         p:nth-child(4) {
@@ -52,8 +51,8 @@ export const TripContainer = styled.div`
     }
 
     :hover {
-        background-color: var(--soft-pink);
-        border: 1px solid #aaa;
+        background-color: var(--yellow);
+        border: 1px solid var(--soft-blue);
     }
 
 `

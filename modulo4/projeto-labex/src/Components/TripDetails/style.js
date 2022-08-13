@@ -8,9 +8,9 @@ export const TripDetailsContainer = styled.div`
     align-items: center;`
 
 export const TitleDetailsPage = styled.h1`
-    color: var(--pink);
+    color: var(--dark-blue);
     text-decoration: underline;
     padding: 15px;
-    background-color: var(--soft-white);
+    background-color: var(--yellow);
     border-radius: 15px;;
 `
