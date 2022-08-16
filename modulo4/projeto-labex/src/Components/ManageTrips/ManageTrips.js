@@ -36,8 +36,8 @@ function ManageTrips() {
         const link = `/admin/trips/${trip.id}`
 
         return (
-            <ManageTripContainer>
-                <li key={trip.id}>
+            <ManageTripContainer key={trip.id}>
+                <li>
                 <Link to={link}>
                     <span>{trip.name}</span>
                 </Link>

@@ -1,5 +1,5 @@
 import React from "react";
-import ApplicationForm from "../Components/ApplicationForm/ApplicationForm";
+import ApplicationForm from "../Components/Forms/ApplicationForm";
 import { Pages, Title } from "./style";
 
 function ApplicationFormPage() {

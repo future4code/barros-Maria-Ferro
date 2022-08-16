@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     }`
 
 export const Pages = styled.div`
-    margin-top: 30vh;
+    margin-top: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

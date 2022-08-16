@@ -1,4 +1,5 @@
 import React from "react";
+import CreateTripForm from "../Components/Forms/CreateTripForm";
 import { Pages, Title } from "./style";
 
 function CreateTripPage() {
@@ -9,6 +10,7 @@ function CreateTripPage() {
             <Title>
                 Criar Viagem
             </Title>
+            <CreateTripForm/>
         </Pages>
         </div>
     )

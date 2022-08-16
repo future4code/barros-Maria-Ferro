@@ -1,0 +1,37 @@
+[ 
+    {   "id": 1,
+        "planet": "Júpiter"
+    }, 
+    {
+        "id": 2,
+        "planet": "Marte"
+    },
+    {
+        "id": 3,
+        "planet": "Mercúrio"
+    }, 
+    {
+        "id": 4,
+        "planet": "Netuno"
+    }, 
+    {
+        "id": 5,
+        "planet": "Plutão"
+    },
+    {
+        "id": 6,
+        "planet": "Saturno"
+    },
+    {
+        "id": 7,
+        "planet": "Terra"
+    },
+    {
+        "id": 8,
+        "planet": "Urano"
+    },
+    {
+        "id": 9,
+        "planet": "Vênus"
+    }
+]

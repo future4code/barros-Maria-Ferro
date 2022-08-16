@@ -30,6 +30,7 @@ export const TripContainer = styled.div`
         text-transform: uppercase;
         text-align: center;
         padding: 25px;
+        box-sizing:border-box;
 
         p:nth-child(1) {
             font-weight: 900;
