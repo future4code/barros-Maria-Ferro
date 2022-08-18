@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export function useRequestData(url) {
+export function useRequestData(url, headers) {
     const [data, setData] = useState(undefined)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState("")
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get(url)
+        axios.get(url, headers)
         .then((response) => {
             setIsLoading(false)
             setData(response.data)

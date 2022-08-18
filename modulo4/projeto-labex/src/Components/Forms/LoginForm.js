@@ -1,7 +1,6 @@
 import React from "react";
 import { AppForm } from "./style";
 import { useNavigate } from "react-router-dom";
-import { Button, ButtonsDiv } from "../../Pages/style";
 import useForm from "../../Hooks/useForm";
 import axios from "axios";
 import { BASE_URL } from "../../Constants/Constants";
@@ -9,7 +8,7 @@ import { BASE_URL } from "../../Constants/Constants";
 function LoginForm() {
 
     const navigate = useNavigate()
-    const [form, onChange] = useForm({email: "", password: ""})
+    const [form, onChange, clear] = useForm({email: "", password: ""})
 
     const Login = () => {
         axios.post(`${BASE_URL}/login`, form, {
@@ -18,10 +17,12 @@ function LoginForm() {
             }
         })
         .then((response) => {
+            window.localStorage.setItem("token", response.data.token)
             navigate("/admin/trips/list")
         })
         .catch((error) => {
             window.alert("E-mail e/ou senha incorretos. Verifique as informações e tente novamente.")
+            clear()
         })
     }
 
@@ -53,9 +54,6 @@ function LoginForm() {
             />
             <button>Login</button>
         </AppForm>
-        <ButtonsDiv>
-            <Button onClick={() => navigate(-1)}>Voltar</Button>
-        </ButtonsDiv>
         </div>
     )
 }

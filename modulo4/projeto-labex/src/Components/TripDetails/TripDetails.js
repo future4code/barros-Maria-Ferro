@@ -1,89 +1,101 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRequestData } from "../../Hooks/useRequestData";
 import { BASE_URL } from "../../Constants/Constants";
 import { useParams } from "react-router-dom";
-import { CandidateContainer, TitleDetailsPage, TripDetailsContainer } from "./style";
+import { ApprovedCandidatesContainer, CandidateContainer, TitleDetailsPage, TripDetailsContainer } from "./style";
 import Loading from '../../Images/Loading-Labex.svg'
 import { Button, ButtonsDiv, Title } from "../../Pages/style";
+import { TripContainer } from '../TripsList/style'
 import axios from "axios";
-import { TripContainer } from '../Trips/style'
 
 function TripDetails() {
 
     const pathParams = useParams();
     const tripId = pathParams.id
-    const [dataTrip, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
-    const [tripInfo, setTripInfo] = useState("")
+    const token = window.localStorage.getItem("token")
+    const [dataTrip, isLoading, error] = useRequestData(`${BASE_URL}/trip/${tripId}`, {headers: {
+        auth: token
+    }})
 
-    const definePage = dataTrip && dataTrip.trips.filter((trip) => {
-       return tripId === trip.id
-    })
+    const title = dataTrip && <TitleDetailsPage key={dataTrip.trip.id}> {dataTrip.trip.name} </TitleDetailsPage>
 
-    const title = definePage && definePage.map((trip) => {
-        return <TitleDetailsPage key={trip.id}> {trip.name} </TitleDetailsPage>
-    })
+    const listInfo = dataTrip && (
+        <TripContainer key={dataTrip.trip.id}>
+                <p>{dataTrip.trip.description}</p>
+                <p>{dataTrip.trip.planet}</p>
+                <p>{dataTrip.trip.durationInDays} dias | {dataTrip.trip.date}</p>
+        </TripContainer>)
 
-    const GetTripDetail = () => {
-        axios.get(`${BASE_URL}/trip/${tripId}`, {
+    const DecideCandidate = (candidateId, decide) => {
+
+        const body = {
+            "approve": decide
+        }
+
+        axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/maria-ferro-barros/trips/${tripId}/candidates/${candidateId}/decide`, body, {
             headers: {
-                "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkYxYUVkNXJBakdPalo0bnBveUtOIiwiZW1haWwiOiJtYXJpYS1mZXJyby1iYXJyb3NAZ21haWwuY29tIiwiaWF0IjoxNjYwNjUzNTA2fQ.YvlBF2meLBrPvyaV5AbmzaJJCxWbZSrkkFNf8zvVL1s"
+                "Content-Type" : "application/json",
+                "auth": token
             }
         })
         .then((response) => {
-            setTripInfo(response.data.trip)
+            if(decide) {
+                window.alert("Candidato aprovado!")
+            } else {
+                window.alert("Candidato recusado.")
+            }
         })
         .catch((error) => {
             console.log(error.response.data)
         })
     }
-
-    const listInfo = tripInfo && (
-        <TripContainer key={tripInfo.id}>
-            <li>
-                <p>{tripInfo.name}</p>
-                <p>{tripInfo.description}</p>
-                <p>{tripInfo.planet}</p>
-                <p>{tripInfo.durationInDays} dias | {tripInfo.date}</p>
-            </li>
-        </TripContainer>)
     
-    const listCandidates = tripInfo && tripInfo.candidates.map((person) => {
+    const listCandidates = dataTrip && dataTrip.trip.candidates.map((person) => {
         return (
         <CandidateContainer key={person.id}>
-            <li>
                 <p>Nome: <span>{person.name}</span></p>
                 <p>Idade: <span>{person.age} anos</span></p>
                 <p>Texto de aplicação: <span>{person.applicationText}</span> </p>
                 <p>País: <span>{person.country}</span> </p>
                 <p>Profissão: <span>{person.profession}</span></p>
                 <ButtonsDiv>
-                    <Button>Aprovar</Button>
-                    <Button>Recusar</Button>
+                    <Button onClick={()=> {DecideCandidate(person.id, true)}}>Aprovar</Button>
+                    <Button onClick={()=> {DecideCandidate(person.id, false)}}>Recusar</Button>
                 </ButtonsDiv>
-            </li>
         </CandidateContainer>
         )
     })
 
-    useEffect (() => {
-        GetTripDetail()
-      }, [])
+    const listApprovedCandidates = dataTrip && dataTrip.trip.approved.map((person) => {
+       return <ApprovedCandidatesContainer key={person.id}>
+        <p>{person.name}, {person.age} anos, {person.country}</p>
+        </ApprovedCandidatesContainer>
+    })
 
 
     return (
         <TripDetailsContainer>
             {isLoading && <img src={Loading} alt="Carregando"/>}
             {!isLoading && error && <p>Ocorreu um erro.</p>}
-            {!isLoading && dataTrip && dataTrip.trips.length > 0 && <span>{title}</span>}
-            {!isLoading && dataTrip && dataTrip.trips.length === 0 && <p>Nenhuma viagem disponível.</p>}
+            {!isLoading && dataTrip && <span>{title}</span>}
 
-            {listInfo}
+            {isLoading && <img src={Loading} alt="Carregando"/>}
+            {!isLoading && error && <p>Ocorreu um erro.</p>}
+            {!isLoading && dataTrip && <ul>{listInfo}</ul>}
 
             <Title>Candidatos Pendentes</Title>
 
-            {listCandidates}
+            {isLoading && <img src={Loading} alt="Carregando"/>}
+            {!isLoading && error && <p>Ocorreu um erro.</p>}
+            {!isLoading && dataTrip && dataTrip.trip.candidates.length > 0 && <ul>{listCandidates}</ul>}
+            {!isLoading && dataTrip && dataTrip.trip.candidates.length === 0 && <p>Nenhum novo candidato inscrito.</p>}
 
             <Title>Candidatos Aprovados</Title>
+
+            {isLoading && <img src={Loading} alt="Carregando"/>}
+            {!isLoading && error && <p>Ocorreu um erro.</p>}
+            {!isLoading && dataTrip && dataTrip.trip.approved.length > 0 && (<ul>{listApprovedCandidates}</ul>)}
+            {!isLoading && dataTrip && dataTrip.trip.approved.length === 0 && <p>Nenhum candidato aprovado.</p>}
         </TripDetailsContainer>
     )
 }

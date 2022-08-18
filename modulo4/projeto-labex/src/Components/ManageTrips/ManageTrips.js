@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRequestData } from "../../Hooks/useRequestData";
 import Loading from '../../Images/Loading-Labex.svg'
 import { BASE_URL } from "../../Constants/Constants";
-import { AllTripsContainer } from "../Trips/style";
+import { AllTripsContainer } from "../TripsList/style";
 import { ManageTripContainer } from "./style";
 import axios from "axios";
 import Delete from "../../Images/Delete.png"
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 function ManageTrips() {
 
     const [dataTrips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
+    const token = window.localStorage.getItem("token")
 
     const DeleteTrip = (tripId) => {
 
@@ -19,7 +20,7 @@ function ManageTrips() {
         if(window.confirm(message)) {
             axios.delete(`${BASE_URL}/trips/${tripId}`, {
             headers: {
-                "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ilp3N0tNUEp2RmFqRmtmUlE4N3RBIiwiZW1haWwiOiJhc3Ryb2RldkBnbWFpbC5jb20uYnIiLCJpYXQiOjE2MTc5MDE4NDd9.yKi2emMJ-Ln3fNigx09HNZIDWPEhF8e_WnbYAAd1r2k"
+                "auth": token
             }
         })
             .then((response) => {

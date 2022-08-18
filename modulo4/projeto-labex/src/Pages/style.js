@@ -32,6 +32,7 @@ export const Title = styled.h1`
     display: flex;
     align-items: center;
     gap: 5px;
+    margin: 0;
 `
 
 export const Button = styled.button`

@@ -4,19 +4,17 @@ import { useRequestData } from "../../Hooks/useRequestData";
 import Loading from '../../Images/Loading-Labex.svg'
 import { BASE_URL } from "../../Constants/Constants";
 
-function Trips() {
+function TripsList() {
 
     const [dataTrips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
 
         const tripsList = dataTrips && dataTrips.trips.map((trip) => {
             return (
                 <TripContainer key={trip.id}>
-                    <li>
                         <p>{trip.name}</p>
                         <p>{trip.description}</p>
                         <p>{trip.planet}</p>
                         <p>{trip.durationInDays} dias | {trip.date}</p>
-                    </li>
                 </TripContainer>
             )
         })
@@ -35,4 +33,4 @@ function Trips() {
     )
 }
 
-export default Trips
+export default TripsList

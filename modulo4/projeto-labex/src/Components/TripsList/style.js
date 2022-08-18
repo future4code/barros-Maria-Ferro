@@ -14,23 +14,22 @@ export const AllTripsContainer = styled.div`
         }
 `
 
-export const TripContainer = styled.div`
+export const TripContainer = styled.li`
     width: 40vw;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     margin: 10px;
     background-color: var(--soft-blue);
     border-radius: 10px;
     border: 1px solid var(--dark-blue);
-
-    li {
-        list-style: none;
-        color: var(--dark-blue);
-        font-family: 'Merriweather', serif;
-        text-transform: uppercase;
-        text-align: center;
-        padding: 25px;
-        box-sizing:border-box;
+    list-style: none;
+    color: var(--dark-blue);
+    font-family: 'Merriweather', serif;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 25px;
+    box-sizing:border-box;
 
         p:nth-child(1) {
             font-weight: 900;
@@ -48,8 +47,6 @@ export const TripContainer = styled.div`
             font-size: 0.8rem;
             font-weight: 900;
         }
-
-    }
 
     :hover {
         background-color: var(--yellow);

@@ -8,6 +8,8 @@ function HomePage() {
 
     const navigate = useNavigate()
 
+    const token = window.localStorage.getItem("token")
+
     return (
         <Pages>
             <Title>
@@ -15,7 +17,7 @@ function HomePage() {
             </Title>
             <ButtonsDiv>
                 <Button onClick={() => navigate("/trips/list")}>Ver Viagens</Button>
-                <Button onClick={() => navigate("/login")}>Área Admin<img src={Private} alt="Cadeado"/></Button>
+                <Button onClick={token === null ? () => navigate("/login") : () => navigate("/admin/trips/list")}>Área Admin<img src={Private} alt="Cadeado"/></Button>
             </ButtonsDiv>
         </Pages>
     )

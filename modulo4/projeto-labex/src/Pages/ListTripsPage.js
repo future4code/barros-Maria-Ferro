@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, ButtonsDiv, Pages, Title } from "./style";
 import { useNavigate } from "react-router-dom";
-import Trips from "../Components/Trips/Trips";
+import TripsList from "../Components/TripsList/TripsList";
 
 function ListTripsPage() {
 
@@ -16,7 +16,7 @@ function ListTripsPage() {
                 <Button onClick={() => navigate(-1)}>Voltar</Button>
                 <Button onClick={() => navigate("/trips/application")}>Inscrever-se</Button>
             </ButtonsDiv>
-            <Trips/>
+            <TripsList/>
         </Pages>
     )
 }

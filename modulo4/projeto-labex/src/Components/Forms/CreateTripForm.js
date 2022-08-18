@@ -12,12 +12,13 @@ function CreateTripForm() {
     const navigate = useNavigate()
     const [form, onChange, clear] = useForm( { name: "", planet: "", date: "", description: "", durationInDays: "" })
     const planets = PlanetsList
+    const token = window.localStorage.getItem("token")
 
     const CreateTrip = () => {
         axios.post(`${BASE_URL}/trips`, form, {
             headers: {
                 "Content-Type": "application/json",
-                "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkYxYUVkNXJBakdPalo0bnBveUtOIiwiZW1haWwiOiJtYXJpYS1mZXJyby1iYXJyb3NAZ21haWwuY29tIiwiaWF0IjoxNjYwNjUzNTA2fQ.YvlBF2meLBrPvyaV5AbmzaJJCxWbZSrkkFNf8zvVL1s"
+                "auth": token
             }
         })
         .then((response) => {
