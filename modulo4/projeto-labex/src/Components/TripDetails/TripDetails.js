@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRequestData } from "../../Hooks/useRequestData";
 import { BASE_URL } from "../../Constants/Constants";
 import { useParams } from "react-router-dom";
@@ -13,17 +13,17 @@ function TripDetails() {
     const pathParams = useParams();
     const tripId = pathParams.id
     const token = window.localStorage.getItem("token")
-    const [dataTrip, isLoading, error] = useRequestData(`${BASE_URL}/trip/${tripId}`, {headers: {
+    const [dataTrip, isLoading, error, reload, setReload] = useRequestData(`${BASE_URL}/trip/${tripId}`, {headers: {
         auth: token
     }})
 
-    const title = dataTrip && <TitleDetailsPage key={dataTrip.trip.id}> {dataTrip.trip.name} </TitleDetailsPage>
+    const title = dataTrip && <TitleDetailsPage> {dataTrip.trip.name} </TitleDetailsPage>
 
     const listInfo = dataTrip && (
-        <TripContainer key={dataTrip.trip.id}>
-                <p>{dataTrip.trip.description}</p>
-                <p>{dataTrip.trip.planet}</p>
-                <p>{dataTrip.trip.durationInDays} dias | {dataTrip.trip.date}</p>
+        <TripContainer>
+            <p>{dataTrip.trip.description}</p>
+            <p>{dataTrip.trip.planet}</p>
+            <p>{dataTrip.trip.durationInDays} dias | {dataTrip.trip.date}</p>
         </TripContainer>)
 
     const DecideCandidate = (candidateId, decide) => {
@@ -32,7 +32,7 @@ function TripDetails() {
             "approve": decide
         }
 
-        axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/maria-ferro-barros/trips/${tripId}/candidates/${candidateId}/decide`, body, {
+        axios.put(`${BASE_URL}/trips/${tripId}/candidates/${candidateId}/decide`, body, {
             headers: {
                 "Content-Type" : "application/json",
                 "auth": token
@@ -41,8 +41,10 @@ function TripDetails() {
         .then((response) => {
             if(decide) {
                 window.alert("Candidato aprovado!")
+                setReload(!reload)
             } else {
                 window.alert("Candidato recusado.")
+                setReload(!reload)
             }
         })
         .catch((error) => {
@@ -53,15 +55,15 @@ function TripDetails() {
     const listCandidates = dataTrip && dataTrip.trip.candidates.map((person) => {
         return (
         <CandidateContainer key={person.id}>
-                <p>Nome: <span>{person.name}</span></p>
-                <p>Idade: <span>{person.age} anos</span></p>
-                <p>Texto de aplicação: <span>{person.applicationText}</span> </p>
-                <p>País: <span>{person.country}</span> </p>
-                <p>Profissão: <span>{person.profession}</span></p>
-                <ButtonsDiv>
-                    <Button onClick={()=> {DecideCandidate(person.id, true)}}>Aprovar</Button>
-                    <Button onClick={()=> {DecideCandidate(person.id, false)}}>Recusar</Button>
-                </ButtonsDiv>
+            <p>Nome: <span>{person.name}</span></p>
+            <p>Idade: <span>{person.age} anos</span></p>
+            <p>Texto de aplicação: <span>{person.applicationText}</span> </p>
+            <p>País: <span>{person.country}</span> </p>
+            <p>Profissão: <span>{person.profession}</span></p>
+            <ButtonsDiv>
+                <Button onClick={()=> {DecideCandidate(person.id, true)}}>Aprovar</Button>
+                <Button onClick={()=> {DecideCandidate(person.id, false)}}>Recusar</Button>
+            </ButtonsDiv>
         </CandidateContainer>
         )
     })
@@ -72,7 +74,6 @@ function TripDetails() {
         </ApprovedCandidatesContainer>
     })
 
-
     return (
         <TripDetailsContainer>
             {isLoading && <img src={Loading} alt="Carregando"/>}
@@ -81,7 +82,7 @@ function TripDetails() {
 
             {isLoading && <img src={Loading} alt="Carregando"/>}
             {!isLoading && error && <p>Ocorreu um erro.</p>}
-            {!isLoading && dataTrip && <ul>{listInfo}</ul>}
+            {!isLoading && dataTrip && <div>{listInfo}</div>}
 
             <Title>Candidatos Pendentes</Title>
 
@@ -94,7 +95,7 @@ function TripDetails() {
 
             {isLoading && <img src={Loading} alt="Carregando"/>}
             {!isLoading && error && <p>Ocorreu um erro.</p>}
-            {!isLoading && dataTrip && dataTrip.trip.approved.length > 0 && (<ul>{listApprovedCandidates}</ul>)}
+            {!isLoading && dataTrip && dataTrip.trip.approved.length > 0 && <ul>{listApprovedCandidates}</ul>}
             {!isLoading && dataTrip && dataTrip.trip.approved.length === 0 && <p>Nenhum candidato aprovado.</p>}
         </TripDetailsContainer>
     )

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRequestData } from "../../Hooks/useRequestData";
 import Loading from '../../Images/Loading-Labex.svg'
 import { BASE_URL } from "../../Constants/Constants";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 function ManageTrips() {
 
-    const [dataTrips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
+    const [dataTrips, isLoading, error, reload, setReload] = useRequestData(`${BASE_URL}/trips`)
     const token = window.localStorage.getItem("token")
 
     const DeleteTrip = (tripId) => {
@@ -25,6 +25,7 @@ function ManageTrips() {
         })
             .then((response) => {
                 window.alert("Viagem excluída com sucesso")
+                setReload(!reload)
             })
             .catch((error) => {
                 console.log(error.response.data)

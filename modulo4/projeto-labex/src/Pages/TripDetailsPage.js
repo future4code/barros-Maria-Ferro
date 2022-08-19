@@ -14,7 +14,7 @@ function TripDetailsPage() {
         <Pages>
             <TripDetails/>
             <ButtonsDiv>
-            <Button onClick={() => navigate(-1)}>Voltar</Button>
+                <Button onClick={() => navigate(-1)}>Voltar</Button>
             </ButtonsDiv>
         </Pages>
     )

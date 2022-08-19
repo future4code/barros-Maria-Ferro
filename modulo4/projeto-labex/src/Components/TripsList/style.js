@@ -14,7 +14,7 @@ export const AllTripsContainer = styled.div`
         }
 `
 
-export const TripContainer = styled.li`
+export const TripContainer = styled.div`
     width: 40vw;
     display: flex;
     justify-content: center;
