@@ -9,10 +9,6 @@ export const Pages = styled.div`
     width: 100%;
     height: 100%;
     background-color: (--yellow);
-
-    img {
-        opacity: 50%;
-    }
 `
 
 export const Title = styled.h1`
