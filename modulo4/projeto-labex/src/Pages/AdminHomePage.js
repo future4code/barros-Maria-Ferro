@@ -8,9 +8,7 @@ import useProtectedPage from "../Hooks/useProtectedPage";
 function AdminHomePage() {
 
     useProtectedPage()
-
     const navigate = useNavigate()
-
     const logout = () => {
         localStorage.removeItem("token")
         navigate("/login")

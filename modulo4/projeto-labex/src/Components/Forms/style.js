@@ -44,3 +44,12 @@ export const AppForm = styled.form`
         }
     }
 `
+
+export const Loader = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;`

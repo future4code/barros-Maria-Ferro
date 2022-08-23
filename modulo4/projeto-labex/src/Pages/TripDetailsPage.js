@@ -7,7 +7,6 @@ import useProtectedPage from "../Hooks/useProtectedPage";
 function TripDetailsPage() {
 
     useProtectedPage()
-
     const navigate = useNavigate()
 
     return (

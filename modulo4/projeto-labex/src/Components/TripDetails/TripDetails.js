@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRequestData } from "../../Hooks/useRequestData";
 import { BASE_URL } from "../../Constants/Constants";
 import { useParams } from "react-router-dom";
-import { ApprovedCandidatesContainer, CandidateContainer, TitleDetailsPage, TripDetailsContainer } from "./style";
+import { ApprovedCandidatesContainer, CandidateContainer, TitleDetailsPage, TripDetailsContainer, Loader } from "./style";
 import Loading from '../../Images/Loading-Labex.svg'
 import { Button, ButtonsDiv, Title } from "../../Pages/style";
 import { TripContainer } from '../TripsList/style'
@@ -16,6 +16,7 @@ function TripDetails() {
     const [dataTrip, isLoading, error, reload, setReload] = useRequestData(`${BASE_URL}/trip/${tripId}`, {headers: {
         auth: token
     }})
+    const [loadingForm, setLoadingForm] = useState(false)
 
     const title = dataTrip && <TitleDetailsPage> {dataTrip.trip.name} </TitleDetailsPage>
 
@@ -40,9 +41,11 @@ function TripDetails() {
         })
         .then((response) => {
             if(decide) {
+                setLoadingForm(false)
                 window.alert("Candidato aprovado!")
                 setReload(!reload)
             } else {
+                setLoadingForm(false)
                 window.alert("Candidato recusado.")
                 setReload(!reload)
             }
@@ -50,6 +53,11 @@ function TripDetails() {
         .catch((error) => {
             console.log(error.response.data)
         })
+    }
+
+    const onClickDecide = (person, decide) => {
+        setLoadingForm(true)
+        DecideCandidate(person, decide)
     }
     
     const listCandidates = dataTrip && dataTrip.trip.candidates.map((person) => {
@@ -61,9 +69,12 @@ function TripDetails() {
             <p>País: <span>{person.country}</span> </p>
             <p>Profissão: <span>{person.profession}</span></p>
             <ButtonsDiv>
-                <Button onClick={()=> {DecideCandidate(person.id, true)}}>Aprovar</Button>
-                <Button onClick={()=> {DecideCandidate(person.id, false)}}>Recusar</Button>
+                <Button onClick={()=> {onClickDecide(person.id, true)}}>Aprovar</Button>
+                <Button onClick={()=> {onClickDecide(person.id, false)}}>Recusar</Button>
             </ButtonsDiv>
+        
+        {loadingForm && <Loader><img src={Loading} alt="Carregando"/></Loader>}
+
         </CandidateContainer>
         )
     })

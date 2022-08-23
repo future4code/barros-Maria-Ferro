@@ -53,3 +53,10 @@ export const ApprovedCandidatesContainer = styled.li`
     justify-content: center;
     text-align: center;
 `
+
+export const Loader = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;`

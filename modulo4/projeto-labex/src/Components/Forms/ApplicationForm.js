@@ -1,22 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useRequestData } from "../../Hooks/useRequestData";
 import useForm from "../../Hooks/useForm";
 import CountriesList from '../CountriesList.json'
 import { BASE_URL } from "../../Constants/Constants";
-import { AppForm } from "./style";
-import { ButtonsDiv, Button } from "../../Pages/style";
+import { AppForm, Loader } from "./style";
+import Loading from '../../Images/Loading-Labex.svg'
 
 function ApplicationForm() {
-
-    const navigate = useNavigate()
 
     const [dataTrips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
     const [form, onChange, clear] = useForm({ name: "", age: "", applicationText: "", profession: "", country: "" })
     const [inputId, setInputId] = useState("")
     const countries = CountriesList
+    const [loadingForm, setLoadingForm] = useState(false)
 
     const ApplyToTrip = (tripId) => {
 
@@ -26,11 +24,13 @@ function ApplicationForm() {
             }
         })
         .then ((response) => {
+            setLoadingForm(false)
             window.alert("Inscrição realizada com sucesso! Aguarde novidades.")
             clear()
         })
         .catch((error) => {
-            console.log(error.response.data)
+            setLoadingForm(false)
+            window.alert("ERRO! Verifique as informações e tente novamente. Não esqueça de selecionar uma viagem!")
         })
     }
 
@@ -39,6 +39,7 @@ function ApplicationForm() {
     const handleClick = (event) => {
         event.preventDefault()
         ApplyToTrip(inputId)
+        setLoadingForm(true)
     }
 
     // RENDERIZAR OPÇÕES DE VIAGENS E PAÍSES NO FORMULÁRIO
@@ -57,28 +58,31 @@ function ApplicationForm() {
     
     return (
         <div>
+        
+        {loadingForm && <Loader><img src={Loading} alt="Carregando"/></Loader>}
+
         <AppForm onSubmit={handleClick}>
             {isLoading && (
                 <select value={inputId} onChange={(e) => (setInputId(e.target.value))}>
-                    <option defaultValue="" selected>Selecione uma viagem</option>
+                    <option>Selecione uma viagem</option>
                     <option>Carregando...</option>
                 </select>
             )}
             {!isLoading && error && (
                 <select value={inputId} onChange={(e) => (setInputId(e.target.value))}>
-                    <option defaultValue="" selected>Selecione uma viagem</option>
+                    <option>Selecione uma viagem</option>
                     <option>Ocorreu um erro.</option>
                 </select>
             )}
             {!isLoading && dataTrips && dataTrips.trips.length > 0 && (
                 <select value={inputId} onChange={(e) => (setInputId(e.target.value))} autoFocus>
-                    <option defaultValue="" selected>Selecione uma viagem</option>
+                    <option>Selecione uma viagem</option>
                     {tripsList}
                 </select>
             )}
             {!isLoading && dataTrips && dataTrips.trips.length === 0 && (
                 <select value={inputId} onChange={(e) => (setInputId(e.target.value))}>
-                    <option defaultValue="" selected>Selecione uma viagem</option>
+                    <option>Selecione uma viagem</option>
                     <option>Nenhuma viagem disponível.</option>
                 </select>
             )}
@@ -130,9 +134,6 @@ function ApplicationForm() {
             </select>
             <button>Enviar</button>
             </AppForm>
-            <ButtonsDiv>
-                <Button onClick={() => navigate(-1)}>Voltar</Button>
-            </ButtonsDiv>
         </div>
     )
 }

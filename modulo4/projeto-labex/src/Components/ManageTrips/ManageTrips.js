@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {useState} from "react";
 import { useRequestData } from "../../Hooks/useRequestData";
 import Loading from '../../Images/Loading-Labex.svg'
+import LoadingDelete from '../../Images/Loading-Delete-Labex.svg'
 import { BASE_URL } from "../../Constants/Constants";
 import { AllTripsContainer } from "../TripsList/style";
 import { ManageTripContainer } from "./style";
@@ -12,6 +13,7 @@ function ManageTrips() {
 
     const [dataTrips, isLoading, error, reload, setReload] = useRequestData(`${BASE_URL}/trips`)
     const token = window.localStorage.getItem("token")
+    const [loadingForm, setLoadingForm] = useState(false)
 
     const DeleteTrip = (tripId) => {
 
@@ -24,14 +26,23 @@ function ManageTrips() {
             }
         })
             .then((response) => {
+                setLoadingForm(false)
                 window.alert("Viagem excluída com sucesso")
                 setReload(!reload)
             })
             .catch((error) => {
-                console.log(error.response.data)
+                setLoadingForm(false)
+                window.alert("Aconteceu algo que impediu a exclusão da viagem! Tente novamente.")
             })
         }
     }
+
+    const onClickDelete = (trip) => {
+        setLoadingForm(true)
+        DeleteTrip(trip)
+    }
+
+    const imageButton = !loadingForm ? <img src={Delete} alt="Botão deletar"/> : <img src={LoadingDelete} alt="Carregando"/>
 
     const tripsList = dataTrips && dataTrips.trips.map((trip) => {
 
@@ -43,7 +54,7 @@ function ManageTrips() {
                 <Link to={link}>
                     <span>{trip.name}</span>
                 </Link>
-                    <button onClick={() => DeleteTrip(trip.id)}><img src={Delete} alt="Botão deletar"></img></button>
+                    <button onClick={() => onClickDelete(trip.id)}> {imageButton} </button>
                 </li>
             </ManageTripContainer>
         )

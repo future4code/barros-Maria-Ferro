@@ -1,5 +1,5 @@
-import Router from "./Components/Router";
-import { GlobalStyle } from "./Pages/style";
+import Router from "./Router/Router";
+import { GlobalStyle } from "./style";
 
 
 function App() {

@@ -1,18 +1,17 @@
 import axios from "axios";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { BASE_URL } from "../../Constants/Constants";
 import useForm from "../../Hooks/useForm";
-import { Button, ButtonsDiv } from "../../Pages/style";
-import { AppForm } from "./style";
+import { AppForm, Loader } from "./style";
+import Loading from '../../Images/Loading-Labex.svg'
 import PlanetsList from '../PlanetsList.json'
 
 function CreateTripForm() {
     
-    const navigate = useNavigate()
     const [form, onChange, clear] = useForm( { name: "", planet: "", date: "", description: "", durationInDays: "" })
     const planets = PlanetsList
     const token = window.localStorage.getItem("token")
+    const [loadingForm, setLoadingForm] = useState(false)
 
     const CreateTrip = () => {
         axios.post(`${BASE_URL}/trips`, form, {
@@ -22,15 +21,18 @@ function CreateTripForm() {
             }
         })
         .then((response) => {
+            setLoadingForm(false)
             window.alert("Viagem criada com sucesso!")
             clear()
         })
         .catch((error) => {
-            console.log(error.response.data)
+            setLoadingForm(false)
+            window.alert("ERRO! Verifique se preencheu todas as informações corretamente e tente de novo!")
         })
     }
 
     const handleClick = (event) => {
+        setLoadingForm(true)
         event.preventDefault()
         CreateTrip()
     }
@@ -49,6 +51,9 @@ function CreateTripForm() {
    
     return (
         <div>
+
+        {loadingForm && <Loader><img src={Loading} alt="Carregando"/></Loader>}
+        
         <AppForm onSubmit={handleClick}>
             <input 
                 name="name" 
@@ -98,9 +103,6 @@ function CreateTripForm() {
             />
             <button>Criar</button>
         </AppForm>
-        <ButtonsDiv>
-            <Button onClick={() => navigate(-1)}>Voltar</Button>
-        </ButtonsDiv>
         </div>
     )
 }

@@ -1,5 +1,6 @@
-import React from "react";
-import { AppForm } from "./style";
+import React, { useState } from "react";
+import { AppForm, Loader } from "./style";
+import Loading from '../../Images/Loading-Labex.svg'
 import { useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import axios from "axios";
@@ -9,6 +10,7 @@ function LoginForm() {
 
     const navigate = useNavigate()
     const [form, onChange, clear] = useForm({email: "", password: ""})
+    const [loadingForm, setLoadingForm] = useState(false)
 
     const Login = () => {
         axios.post(`${BASE_URL}/login`, form, {
@@ -17,22 +19,28 @@ function LoginForm() {
             }
         })
         .then((response) => {
+            setLoadingForm(false)
             window.localStorage.setItem("token", response.data.token)
             navigate("/admin/trips/list")
         })
         .catch((error) => {
+            setLoadingForm(false)
             window.alert("E-mail e/ou senha incorretos. Verifique as informações e tente novamente.")
             clear()
         })
     }
 
     const handleClick = (event) => {
+        setLoadingForm(true)
         event.preventDefault()
         Login()
     }
 
     return (
         <div>
+
+        {loadingForm && <Loader><img src={Loading} alt="Carregando"/></Loader>}
+
         <AppForm onSubmit={handleClick}>
             <input 
                 name="email" 
