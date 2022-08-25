@@ -34,6 +34,8 @@ function ManageTrips() {
                 setLoadingForm(false)
                 window.alert("Aconteceu algo que impediu a exclusão da viagem! Tente novamente.")
             })
+        } else {
+            setLoadingForm(false)
         }
     }
 
