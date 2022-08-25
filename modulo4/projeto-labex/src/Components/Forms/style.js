@@ -22,6 +22,12 @@ export const AppForm = styled.form`
         border-radius: 10px;
         border: none;
         box-sizing:border-box;
+
+        @media(max-device-width : 800px) {
+        width: 90vw;
+        justify-content: center;
+        text-align: center;
+    }
     }
 
     label {

@@ -71,7 +71,7 @@ export const ButtonsDiv = styled.div`
     margin-bottom: 5px;
 
     @media(max-device-width : 800px) {
-        width: 95vw;
+        width: 100vw;
     }
 
     `

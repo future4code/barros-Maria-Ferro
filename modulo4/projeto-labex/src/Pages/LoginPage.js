@@ -11,7 +11,7 @@ function LoginPage() {
         <div>
         <Pages>
             <Title> Login </Title>
-            <LoginForm></LoginForm>
+            <LoginForm/>
         </Pages>
         <ButtonsDiv>
             <Button onClick={() => navigate("/")}>Voltar</Button>
