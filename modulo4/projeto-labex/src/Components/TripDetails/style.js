@@ -44,6 +44,12 @@ export const CandidateContainer = styled.li`
                 font-weight: 700;
             }
         }
+
+    @media(max-device-width : 800px) {
+    width: 95vw;
+    justify-content: center;
+    text-align: center;
+    }
 `
 
 export const ApprovedCandidatesContainer = styled.li`

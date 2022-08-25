@@ -11,7 +11,17 @@ export const AllTripsContainer = styled.div`
         flex-direction: column;
         gap: 15px;
         padding: 15px;
+        margin: 0;
+
+        @media(max-device-width : 800px) {
+        justify-content: center;
+        align-items: center;
+            }
         }
+
+    @media(max-device-width : 800px) {
+    width: 100vw;
+    }
 `
 
 export const TripContainer = styled.div`
@@ -53,4 +63,8 @@ export const TripContainer = styled.div`
         border: 1px solid var(--soft-blue);
     }
 
+    @media(max-device-width : 800px) {
+        width: 80vw;
+    }
 `
+    

@@ -9,6 +9,8 @@ export const Pages = styled.div`
     width: 100%;
     height: 100%;
     background-color: (--yellow);
+
+  
 `
 
 export const Title = styled.h1`
@@ -18,6 +20,13 @@ export const Title = styled.h1`
     align-items: center;
     gap: 5px;
     margin: 0;
+    margin-bottom: 10px;
+
+    @media(max-device-width : 800px) {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
 `
 
 export const Button = styled.button`
@@ -32,6 +41,11 @@ export const Button = styled.button`
     align-items: center;
     justify-content: center;
     gap: 3px;
+
+    @media(max-device-width : 800px) {
+        width: 120px;
+        font-size: 0.8rem;
+    }
 
     img {
         width: 16px;
@@ -54,5 +68,10 @@ export const ButtonsDiv = styled.div`
     align-items: center;
     justify-content: center;
     gap: 15px;
-    margin: 25px;
+    margin-bottom: 5px;
+
+    @media(max-device-width : 800px) {
+        width: 95vw;
+    }
+
     `

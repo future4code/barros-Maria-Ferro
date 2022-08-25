@@ -8,6 +8,10 @@ export const ManageTripContainer = styled.div`
     border-radius: 10px;
     border: 1px solid var(--dark-blue);
 
+    @media(max-device-width : 800px) {
+        width: 100%;
+    }
+
     a {
         text-decoration: none;
         color: var(--dark-blue);
@@ -31,6 +35,12 @@ export const ManageTripContainer = styled.div`
         align-items: center;
         width: 35vw;
         grid-template-columns: 85% 15%;
+
+        @media(max-device-width : 800px) {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
 
         button {
             border: none;

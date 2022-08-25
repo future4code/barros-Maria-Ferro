@@ -6,7 +6,13 @@ export const AppForm = styled.form`
     flex-direction: column;
     gap: 15px;
     margin: 15px;
-    margin-bottom: 25px;
+    
+    @media(max-device-width : 800px) {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        margin: 15px 0;
+    }
 
     input, select {
         width: 100%;
@@ -16,6 +22,10 @@ export const AppForm = styled.form`
         border-radius: 10px;
         border: none;
         box-sizing:border-box;
+    }
+
+    label {
+        display: none;
     }
 
     button {
@@ -32,6 +42,11 @@ export const AppForm = styled.form`
         justify-content: center;
         gap: 3px;
 
+        @media(max-device-width : 800px) {
+        width: 120px;
+        font-size: 0.8rem;
+    }
+
         :hover {
             cursor: pointer;
             border: 1px solid var(--dark-blue);
@@ -43,6 +58,7 @@ export const AppForm = styled.form`
             transform:scale(0.98)
         }
     }
+
 `
 
 export const Loader = styled.div`

@@ -55,6 +55,8 @@ function CreateTripForm() {
         {loadingForm && <Loader><img src={Loading} alt="Carregando"/></Loader>}
         
         <AppForm onSubmit={handleClick}>
+            
+            <label htmlFor="name"> Nome </label>
             <input 
                 name="name" 
                 value={form.name} 
@@ -74,6 +76,8 @@ function CreateTripForm() {
                 <option defaultValue="" selected>Planeta</option>
                 {listOfPlanets}
             </select>
+
+            <label htmlFor="date"> Data de Início</label>
             <input 
                 name="date" 
                 value={form.date} 
@@ -83,6 +87,8 @@ function CreateTripForm() {
                 min={today}
                 required
             />
+
+            <label htmlFor="description"> Descrição </label>
             <input 
                 name="description" 
                 value={form.description} 
@@ -92,6 +98,8 @@ function CreateTripForm() {
                 pattern="^.{30,}" 
                 required
             />
+
+            <label htmlFor="durationInDays"> Duração em dias </label>
             <input 
                 name="durationInDays" 
                 value={form.durationInDays} 

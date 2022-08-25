@@ -87,6 +87,7 @@ function ApplicationForm() {
                 </select>
             )}
 
+            <label htmlFor="name"> Nome </label>
             <input 
                 name="name" 
                 value={form.name} 
@@ -96,6 +97,8 @@ function ApplicationForm() {
                 type="text"
                 required
             />
+
+            <label htmlFor="age"> Idade </label>
             <input 
                 name="age" 
                 value={form.age} 
@@ -105,6 +108,8 @@ function ApplicationForm() {
                 min={18}
                 required
             />
+
+            <label htmlFor="applicationText"> Texto de Candidatura </label>
             <input 
                 name="applicationText" 
                 value={form.applicationText} 
@@ -114,6 +119,8 @@ function ApplicationForm() {
                 pattern="[\s\S]{30,}"
                 required
             />
+
+            <label htmlFor="profession"> Profissão </label>
             <input 
                 name="profession" 
                 value={form.profession} 

@@ -42,6 +42,8 @@ function LoginForm() {
         {loadingForm && <Loader><img src={Loading} alt="Carregando"/></Loader>}
 
         <AppForm onSubmit={handleClick}>
+
+            <label htmlFor="email">E-mail</label>
             <input 
                 name="email" 
                 type="email" 
@@ -52,6 +54,8 @@ function LoginForm() {
                 required
                 autoFocus
             />
+
+            <label htmlFor="password"> Senha </label>
             <input 
                 name="password" 
                 type="password" 
