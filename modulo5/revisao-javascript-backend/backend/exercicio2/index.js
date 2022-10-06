@@ -8,24 +8,32 @@ const clientes = [
 ]
 
 const adicionarClientes = (id, nome) => {
-    let idExistente = false
 
-    for (let i = 0; i < clientes.length; i++) {
-       if (clientes[i].id === id) {
-        idExistente = true
-       }
-    }
+    const regex = /\W|_/
 
-    if(idExistente) {
-        return `Erro. Parâmetro inválido (id já existe).`
+    if (typeof nome !== 'string' || regex.test(nome)) {
+        return `Erro. Parâmetro inválido: '${nome}'. Está em formato inválido.`
     } else {
-        clientes.push( {id: id, nome: nome} )
-        return clientes
-    }
 
+        let idExistente = false
+
+        for (let i = 0; i < clientes.length; i++) {
+        if (clientes[i].id === id) {
+            idExistente = true
+        }
+        }
+
+        if(idExistente) {
+            return `Erro. Parâmetro inválido: '${id}'. Id já existente.`
+        } else {
+            clientes.push( {id: id, nome: nome} )
+            return clientes
+        }
+    }
 }
 
 console.log(adicionarClientes(2, "Bananinha"))
+console.log(adicionarClientes(5, "Banani#nha"))
 console.log(adicionarClientes(5, "Bananinha"))
 
 // Geração de Tabuada
@@ -34,9 +42,9 @@ let tabuada = []
 
 const gerarTabuada = (num) => {
     if (typeof num !== 'number') {
-        return "Erro. Parâmetro inválido (Deve ser um número)."
+        return `Erro. Parâmetro inválido: '${num}'. (Deve ser um número).`
     } else if (num > 10 || num < 1) {
-        return "Erro. Parâmetro inválido (Número precisa ser entre 1 e 10)."
+        return `Erro. Parâmetro inválido: '${num}'. (Deve ser entre 1 e 10)."`
     } else {
 
     tabuada = [
