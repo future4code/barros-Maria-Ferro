@@ -1,6 +1,6 @@
 const converteCelsius = (temperatura, escala) => {
     if (typeof temperatura !== 'number') {
-        return 'Erro. Parâmetro inválido (Temperatura deve ser um número).'
+        return `Erro. Parâmetro inválido: '${temperatura}'. (Temperatura deve ser um número).`
     } else {
     switch (escala) {
         case "K":
@@ -12,7 +12,7 @@ const converteCelsius = (temperatura, escala) => {
             return `${temperatura}° Celsius é equivalente a ${fahrenheit}° Fahrenheit.`;
             break;
         default: 
-            return 'Erro. Parâmetro inválido (Escala deve ser "K" ou "F").'
+            return `Erro. Parâmetro inválido: '${escala}'. (Deve ser "K" ou "F").`
     }}
 }
 
