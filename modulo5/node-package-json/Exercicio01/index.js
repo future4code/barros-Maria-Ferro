@@ -19,4 +19,7 @@ const nameAndAgeFuture = (name, age) => {
     return `Olá, ${name}! Você tem ${age} anos. Em sete anos, você terá ${age+7}.`
 }
 
-console.log(nameAndAgeFuture(nameUser, ageUser))
+const red = '\u001b[31m'
+const message = nameAndAgeFuture(nameUser, ageUser)
+
+console.log(red + message)
