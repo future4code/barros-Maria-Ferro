@@ -33,3 +33,10 @@ type AmostraDeDados = {
     numeros: number[],
     obterEstatisticas: (numeros: number[]) => Estatisticas
 }
+
+const dados: AmostraDeDados = {
+    numeros: [12, 25, 47, 41, 68],
+    obterEstatisticas
+}
+
+console.log(dados.obterEstatisticas(dados.numeros))
