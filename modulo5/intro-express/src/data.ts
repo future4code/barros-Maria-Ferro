@@ -38,6 +38,13 @@ export const users: Users[] = [
         phone: "212 121 212",
         email: "matheus@matheus.com",
         website: "www.matheus.com.br"
+    },
+    {
+        id: 4,
+        name: "Bananinha",
+        phone: "444 444 444",
+        email: "bananinha@bananinha.com",
+        website: "www.bananinha.com.br"
     }
 ]
 
