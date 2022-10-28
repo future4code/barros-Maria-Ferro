@@ -146,11 +146,6 @@ app.get("/todos/:user", (req: Request, res: Response) => {
 
 // exercício 10
 
-type ToDoNew = {
-        selectedUser: ToDo[],
-        others: ToDo[]
-}
-
 app.get("/todos/:user", (req: Request, res: Response) => {
     const userId = req.params.user
     const findUser = toDoList.find(user => user.userId === userId)
@@ -168,12 +163,12 @@ app.get("/todos/:user", (req: Request, res: Response) => {
             return user.userId !== userId
         })
 
-        const toDoNew: ToDoNew = {
-            selectedUser: filteredByUser,
-            others: other,
-        }
-
-        res.status(200).send(toDoNew)
+        res.status(200).send({
+            todos: {
+                selectedUser: filteredByUser,
+                others: other
+            }
+        })
     }
 })
 
