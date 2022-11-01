@@ -78,21 +78,37 @@ app.post("/products", (req: Request, res: Response) => {
 app.get("/products", (req: Request, res: Response) => {
     const product = req.query.name
 
-    if (!product) {
-        res.status(200).send(productList)
-    } else {
-        const findProducts = productList.filter((item) => {
-            return item.name === product
-        })
+    try {
+        const searchProduct = productList.find(item => item.name === product)
 
-        res.status(200).send(findProducts)
+        if (product && !searchProduct) {
+            const error = new Error ("Produto não encontrado.")
+            error.name = "NotFound"
+            throw error
+        }
+
+        if (!product) {
+            res.status(200).send(productList)
+        } else {
+            const findProducts = productList.filter((item) => {
+                return item.name === product
+            })
+    
+            res.status(200).send(findProducts)
+        }
+    } catch (err:any) {
+        if (err.name === "NotFound") {
+            res.status(404).send(err.message)
+        } else {
+            res.status(500).send(err. message)
+        }
     }
 })
 
 // exercício 06
 
-app.put("/products/:id", (req: Request, res: Response) => {
-    const productId = req.params.id
+app.put("/products", (req: Request, res: Response) => {
+    const productId = req.query.id
     const {name, price} = req.body
 
     try {
@@ -162,13 +178,13 @@ app.put("/products/:id", (req: Request, res: Response) => {
 
 // exercício 07
 
-app.delete("/products/:id", (req: Request, res: Response) => {
-    const productToDelete = req.params.id
+app.delete("/products", (req: Request, res: Response) => {
+    const productToDelete = req.query.id
 
     try {
 
         if (!productToDelete) {
-            const error = new Error ("Id do produto não informado")
+            const error = new Error ("Id do produto não informado.")
             error.name = "IdNotFound"
             throw error
         }
@@ -178,7 +194,7 @@ app.delete("/products/:id", (req: Request, res: Response) => {
         })
 
         if (!selectedProduct) {
-            const error = new Error ("Id do produto não encontrado.")
+            const error = new Error ("Id do produto não existente.")
             error.name = "IdNotFound"
             throw error
         }
