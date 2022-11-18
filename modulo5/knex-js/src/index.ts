@@ -203,6 +203,63 @@ app.get("/actors", async (req: Request, res: Response): Promise<void> => {
 // Exercício 04
 // Esses endpoints já foram feitos nas questões A e B do Exercício 02.
 
+// Exercício 05
+app.post("/movies", async (req: Request, res: Response): Promise<void> => {
+    const {id, title, summary, release_date, playing_limit_date} = req.body
+    let errorCode = 400
+
+    try {
+        if (!id || !title || !summary || !release_date || !playing_limit_date) {
+            errorCode = 422
+            throw new Error("Uma ou mais informações faltando.");
+        }
+
+        await connection("Movies")
+        .insert( {id, title, summary, release_date, playing_limit_date} )
+
+        res.status(201).send(`Novo filme adicionado na tabela.`)
+    } catch (e:any) {
+       res.status(errorCode).send(e.message) 
+    }
+})
+
+//Exercício 06
+app.get("/movies/all", async (req: Request, res: Response): Promise<void> => {
+    let result
+    try {
+
+        result = await connection("Movies").limit(15)
+        res.status(200).send(result)
+
+    } catch (e:any) {
+       res.status(404).send(e.message) 
+    }
+})
+
+//Exercício 07
+app.get("/movies/search", async (req: Request, res: Response): Promise<void> => {
+    const query = req.query.query as string
+    let errorCode = 400
+    let result
+
+    try {
+
+        if (!query) {
+            errorCode = 422
+            throw new Error("Adicione o parâmetro de busca.");
+        }
+
+        result = await connection("Movies")
+        .whereILike("title", `%${query}%`)
+        .orWhereILike("summary", `%${query}%`)
+        .orderBy("release_date", "desc")
+
+        res.status(200).send(result)
+
+    } catch (e:any) {
+       res.status(404).send(e.message) 
+    }
+})
 
 app.listen(3003, () => {
     console.log("Server running on port 3003.")
