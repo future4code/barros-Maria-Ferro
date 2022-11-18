@@ -35,8 +35,8 @@ app.get("/actors", async (req: Request, res: Response): Promise<void> => {
 })
 
 // C)
-app.get("/actors/:gender", async (req: Request, res: Response): Promise<void> => {
-    const gender = req.params.gender as string
+app.get("/actors/gender", async (req: Request, res: Response): Promise<void> => {
+    const gender = req.query.gender as string
     let errorCode = 400
     let result
 
@@ -95,7 +95,7 @@ app.patch("/actors/:id/salary", async (req: Request, res: Response): Promise<voi
 
 // B)
 app.delete("/actors/:id", async (req: Request, res: Response): Promise<void> => {
-    const id = req.params.id
+    const id = req.params.id as string
     let errorCode = 400
 
     try {
@@ -145,6 +145,63 @@ app.get("/actors/salary/:gender", async (req: Request, res: Response): Promise<v
         res.status(errorCode).send(e.message)
     }
 })
+
+// Exercício 03
+//A)
+app.get("/actors/:id", async (req: Request, res: Response): Promise<void> => {
+    const id = req.params.id as string
+    let errorCode = 400
+    let result
+
+    try {
+        if (!id || id === ":id") {
+            errorCode = 422
+            throw new Error("Informe o id do usuário.");
+        }
+
+        let getActors = await connection("Actor")
+        const findId = getActors.find(actor => actor.id === id)
+
+        if (!findId) {
+            errorCode = 422
+            throw new Error("Id não encontrado no banco de dados.");
+        }
+
+        result = await connection("Actor").where ( {id: id} )
+
+        res.status(200).send(result)
+
+    } catch (e:any) {
+        res.status(errorCode).send(e.message)
+    }
+})
+
+//B)
+app.get("/actors", async (req: Request, res: Response): Promise<void> => {
+    const gender = req.query.gender as string
+    let errorCode = 400
+    let result
+
+    try {
+        if (!gender || (gender !== 'male' && gender !== 'female')) {
+            errorCode = 422
+            throw new Error("Informe 'male' ou 'female'.");
+        }
+
+        result = await connection("Actor")
+        .count('*')
+        .where( {gender: gender} )
+
+        res.status(200).send(result)
+        
+    } catch (e:any) {
+        res.status(errorCode).send(e.message)
+    }
+    
+})
+
+// Exercício 04
+// Esses endpoints já foram feitos nas questões A e B do Exercício 02.
 
 
 app.listen(3003, () => {
