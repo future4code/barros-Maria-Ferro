@@ -43,8 +43,6 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
         //o e-mail não envia, da mesma forma que não estava funcionando para o professor na aula.
 
-        console.log(send)
-
         res.status(201).send("Usuário criado com sucesso!")
 
     } catch (error:any) {
