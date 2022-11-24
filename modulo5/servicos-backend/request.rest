@@ -3,6 +3,6 @@ Content-Type: application/json
 
 {
     "name": "Luiz",
-    "zipcode": "88048560",
+    "zipcode": "00000022",
     "number": "10"
 }

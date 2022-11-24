@@ -16,6 +16,10 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
         const address = await getFullAddress(zipcode)
 
+        if (!address.logradouro || !address.bairro || !address.cidade || !address.estado) {
+            throw new Error("CEP não encontrado, por gentileza verifique e tente novamente.");
+        }
+
         const newUser: user = {
             nome: name,
             cep: zipcode,
