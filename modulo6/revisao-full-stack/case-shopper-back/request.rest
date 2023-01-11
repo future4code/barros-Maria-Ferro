@@ -1,0 +1,20 @@
+### Ping
+GET http://localhost:3003/ping
+
+### Create Client
+POST http://localhost:3003/clients
+Content-Type: application/json
+
+{
+    "name": "Maria"
+}
+
+### Get All Clients
+GET http://localhost:3003/clients
+
+###
+GET http://localhost:3003/products
+
+###
+
+GET http://localhost:3003/stock
