@@ -70,4 +70,20 @@ export const FormStyle = styled.form`
                 width: 10.5vw;
             }
         }
+`
+
+export const ShowClient = styled.div`
+        width: 95%;
+        display: flex;
+        justify-content: center !important;;
+        align-items: center;
+        border: 3px solid #FF7D95;
+        border-radius: 15px;
+        padding: 15px 25px;
+
+        h1 {
+            margin: 0;
+            color: #FF7D95;
+            font-family: 'DM Serif Display', serif;
+        }
     `
