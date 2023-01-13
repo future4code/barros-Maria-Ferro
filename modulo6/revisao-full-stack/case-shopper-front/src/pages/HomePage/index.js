@@ -8,7 +8,7 @@ export default function HomePage() {
     return (
         <div>
             <Header/>
-            <Products/>
+            {/* <Products/> */}
             <Form/>
             <Footer/>
         </div>

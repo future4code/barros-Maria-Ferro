@@ -17,6 +17,10 @@ export const FormStyle = styled.form`
         border-top: 3px solid #FF7D95;
         border-radius: 15px;
         padding: 15px 25px;
+
+        p {
+            font-weight: bold;
+        }
     }
 
     label {

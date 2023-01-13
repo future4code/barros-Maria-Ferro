@@ -7,9 +7,12 @@ import axios from "axios";
 export default function Form() {
     const [showClient, setShowClient] = useState(false)
     const [formClient, onChangeClient, clearClient] = useForm({name: ""})
-    const [formProducts, onChangeProducts, clearProducts] = useForm({product: "", quantity: 1, deliveryDate: ""})
+    const [formProducts, onChangeProducts, clearProducts] = useForm({name: "", quantity: 1, deliveryDate: ""})
     const [dataClient, isLoadingClient, errorClient, upClient, setUpClient] = useRequestData("http://localhost:3003/clients")
     const [dataProducts, isLoadingProducts, errorProducts] = useRequestData("http://localhost:3003/products")
+    const [productsList, setProductsList] = useState([])
+
+    // clientes
 
     const optionsClient = dataClient && dataClient.map((client) => {
         return (
@@ -34,15 +37,17 @@ export default function Form() {
         })
     }
 
-    const handleClickClient = (event) => {
-        event.preventDefault()
+    const handleClickClient = (e) => {
+        e.preventDefault()
         insertClient()
     }
 
-    const handleClickSelect = (event) => {
-        event.preventDefault()
+    const handleClickSelect = (e) => {
+        e.preventDefault()
         setShowClient(true)
     }
+
+    // produtos
 
     const optionsProducts = dataProducts && dataProducts.map((product) => {
         return (
@@ -50,9 +55,22 @@ export default function Form() {
         )
     })
 
+    const selectedProduct = dataProducts && dataProducts.find(product => product.name === formProducts.name)
+
+    const addProduct = (e) => {
+        e.preventDefault()
+        const newProduct = selectedProduct
+        newProduct.qty = formProducts.quantity
+        setProductsList([...productsList, newProduct])
+        clearProducts()
+    }
+
+    console.log(productsList)
+
     return (
         <FormStyle>
             {selectedClient && showClient && <ShowClient> <h1>Cliente: {selectedClient.name}</h1> </ShowClient>}
+            {!showClient && 
             <div>
                 <label htmlFor="client"> Cliente </label>
                 <input
@@ -71,10 +89,16 @@ export default function Form() {
                 {selectedClient && <button onClick={handleClickSelect}> Confirmar </button>}
                 {!selectedClient && <button onClick={handleClickClient}> Cadastrar </button>}     
             </div>
+            }
 
             <div>
             <label htmlFor="products"> Produto </label>
-                <input id="products" list="dataproducts"/>
+                <input 
+                value={formProducts.name}
+                name="name"
+                onChange={onChangeProducts}
+                id="products"
+                list="dataproducts"/>
                 <datalist id="dataproducts">
                     {isLoadingProducts && <option>Carregando...</option>}
                     {!isLoadingProducts && errorProducts && <option>Ocorreu um erro.</option>}
@@ -83,13 +107,28 @@ export default function Form() {
                 </datalist>
 
             <label htmlFor="qty"> Quantidade </label>
-            <input id="qty" type="number"></input>
+            <input
+            name="quantity"
+            id="qty" 
+            type="number" 
+            value={formProducts.quantity} 
+            onChange={onChangeProducts}/>
 
-            <p>R$</p>
+            {selectedProduct && formProducts.quantity > 0 && selectedProduct.qty_stock >= formProducts.quantity &&
+            <>
+                <p>R${selectedProduct && parseInt(selectedProduct.price * formProducts.quantity).toFixed(2)}</p>
+                <button onClick={addProduct}> Ok </button>
+            </>
+            }
 
-                <button>
-                    Ok
-                </button>
+            {selectedProduct && selectedProduct.qty_stock < formProducts.quantity &&
+            <p>Produto sem estoque!</p>
+            }
+
+            {selectedProduct && formProducts.quantity <= 0 &&
+            <p>Selecione ao menos um item!</p>
+            }
+
             </div>
 
             <div id="end-order">
