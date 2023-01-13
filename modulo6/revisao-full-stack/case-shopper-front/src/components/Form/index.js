@@ -4,13 +4,12 @@ import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
 import axios from "axios";
 
-export default function Form() {
+export default function Form({productsList, setProductsList}) {
     const [showClient, setShowClient] = useState(false)
     const [formClient, onChangeClient, clearClient] = useForm({name: ""})
     const [formProducts, onChangeProducts, clearProducts] = useForm({name: "", quantity: 1, deliveryDate: ""})
     const [dataClient, isLoadingClient, errorClient, upClient, setUpClient] = useRequestData("http://localhost:3003/clients")
     const [dataProducts, isLoadingProducts, errorProducts] = useRequestData("http://localhost:3003/products")
-    const [productsList, setProductsList] = useState([])
 
     // clientes
 
@@ -65,8 +64,6 @@ export default function Form() {
         clearProducts()
     }
 
-    console.log(productsList)
-
     return (
         <FormStyle>
             {selectedClient && showClient && <ShowClient> <h1>Cliente: {selectedClient.name}</h1> </ShowClient>}
@@ -91,6 +88,8 @@ export default function Form() {
             </div>
             }
 
+            {selectedClient && showClient &&
+            <>
             <div>
             <label htmlFor="products"> Produto </label>
                 <input 
@@ -108,6 +107,7 @@ export default function Form() {
 
             <label htmlFor="qty"> Quantidade </label>
             <input
+            min="1"
             name="quantity"
             id="qty" 
             type="number" 
@@ -124,11 +124,6 @@ export default function Form() {
             {selectedProduct && selectedProduct.qty_stock < formProducts.quantity &&
             <p>Produto sem estoque!</p>
             }
-
-            {selectedProduct && formProducts.quantity <= 0 &&
-            <p>Selecione ao menos um item!</p>
-            }
-
             </div>
 
             <div id="end-order">
@@ -137,6 +132,8 @@ export default function Form() {
 
                 <button> Finalizar pedido </button>
             </div>
+            </>
+        }
         </FormStyle>
     )
 }
