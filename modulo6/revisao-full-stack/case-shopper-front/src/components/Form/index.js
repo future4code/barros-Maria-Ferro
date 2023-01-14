@@ -64,6 +64,37 @@ export default function Form({productsList, setProductsList}) {
         clearProducts()
     }
 
+    // pedido
+
+    const getClientId = dataClient && dataClient.find(client => client.name === formClient.name)
+    const clientId = getClientId.id
+
+    const createOrder = () => {
+        const body = {
+            delivery_date: formProducts.deliveryDate,
+            fk_client: clientId,
+            products: productsList
+        }
+
+        axios.post("http://localhost:3003/orders", body, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+            })
+            .then((response) => {
+                window.alert("Pedido realizado com sucesso.")
+            })
+            .catch((error) => {
+                console.log(error.response)
+                // window.alert(`Ocorreu o seguinte erro: ${error.message}`)
+            })
+    }
+
+    const addOrder = (e) => {
+        e.preventDefault()
+        createOrder()
+    }
+
     return (
         <FormStyle>
             {selectedClient && showClient && <ShowClient> <h1>Cliente: {selectedClient.name}</h1> </ShowClient>}
@@ -116,7 +147,7 @@ export default function Form({productsList, setProductsList}) {
 
             {selectedProduct && formProducts.quantity > 0 && selectedProduct.qty_stock >= formProducts.quantity &&
             <>
-                <p>R${selectedProduct && parseInt(selectedProduct.price * formProducts.quantity).toFixed(2)}</p>
+                <p>R${selectedProduct && parseFloat(selectedProduct.price * formProducts.quantity).toFixed(2)}</p>
                 <button onClick={addProduct}> Ok </button>
             </>
             }
@@ -128,12 +159,17 @@ export default function Form({productsList, setProductsList}) {
 
             <div id="end-order">
             <label htmlFor="delivery-date"> Data de Entrega (DD/MM/AAAA) </label>
-                <input id="delivery-date" type="date"></input>
+                <input
+                id="delivery-date"
+                type="date"
+                name="deliveryDate"
+                value={formProducts.deliveryDate}
+                onChange={onChangeProducts}/>
 
-                <button> Finalizar pedido </button>
+                <button onClick={addOrder}> Finalizar pedido </button>
             </div>
             </>
-        }
+            }
         </FormStyle>
     )
 }

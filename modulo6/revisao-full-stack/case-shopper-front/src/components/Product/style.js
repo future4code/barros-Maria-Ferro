@@ -18,6 +18,10 @@ export const MyProduct = styled.li `
         font-weight: bold;
     }
 
+    :hover {
+        background-color: #EAAACB;
+    }
+
     button {
         display: flex;
         background-color: #FFF0D7;

@@ -9,8 +9,12 @@ export const ProductsStyle = styled.div`
     gap: 2vh;
     margin-top: 2%;
 
-    h2 {
+    h1, h2 {
         margin: 0;
+    }
+
+    h2 {
+        color: red;
     }
     `
 

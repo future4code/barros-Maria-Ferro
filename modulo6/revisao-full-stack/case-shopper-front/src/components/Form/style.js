@@ -7,7 +7,7 @@ export const FormStyle = styled.form`
     align-items: center;
     width: 100%;
     gap: 3vh;
-    margin-top: 4%;
+    margin-top: 1%;
 
     div {
         width: 95%;
