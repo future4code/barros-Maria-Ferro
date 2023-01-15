@@ -5,7 +5,7 @@ export const HeaderStyle = styled.header`
     flex-direction: column;
     background-color: #FF7D95;
     width: 100%;
-    height: 15%;
+    height: 20vh;
     padding: 3px;
     justify-content: center;
     align-items: center;

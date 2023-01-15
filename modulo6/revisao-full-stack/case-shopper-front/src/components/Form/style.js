@@ -73,6 +73,11 @@ export const FormStyle = styled.form`
             button {
                 width: 10.5vw;
             }
+
+            p {
+                margin: 0;
+                color: red;
+            }
         }
 `
 

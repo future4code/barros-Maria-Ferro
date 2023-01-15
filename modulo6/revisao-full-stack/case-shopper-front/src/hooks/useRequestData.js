@@ -8,7 +8,6 @@ export const useRequestData = (url) => {
     const [up, setUp] = useState(false)
 
     useEffect(() => {
-        console.log("Hello, World")
         setIsLoading(true)
         axios
         .get(url)

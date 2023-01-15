@@ -5,7 +5,7 @@ import { FooterStyle } from "./style";
 export default function Footer() {
     return (
         <FooterStyle>
-            © Caramel Market | 2023.
+            <p>© Caramel Market | 2023.</p>
         </FooterStyle>
     )
 }

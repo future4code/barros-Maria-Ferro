@@ -9,7 +9,7 @@ export default function HomePage() {
     const [productsList, setProductsList] = useState([])
 
     return (
-        <div>
+        <>
             <Header/>
             <ProductsList
             productsList={productsList}
@@ -19,6 +19,6 @@ export default function HomePage() {
             productsList={productsList}
             setProductsList={setProductsList}/>
             <Footer/>
-        </div>
+        </>
     )
 }

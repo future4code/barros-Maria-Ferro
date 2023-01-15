@@ -3,13 +3,17 @@ import { FormStyle, ShowClient } from "./style";
 import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { goToEndOrder } from "../../routers/Coordinator";
 
 export default function Form({productsList, setProductsList}) {
+    const navigate = useNavigate()
     const [showClient, setShowClient] = useState(false)
     const [formClient, onChangeClient, clearClient] = useForm({name: ""})
     const [formProducts, onChangeProducts, clearProducts] = useForm({name: "", quantity: 1, deliveryDate: ""})
     const [dataClient, isLoadingClient, errorClient, upClient, setUpClient] = useRequestData("http://localhost:3003/clients")
     const [dataProducts, isLoadingProducts, errorProducts] = useRequestData("http://localhost:3003/products")
+    const [orderError, setOrderError] = useState("")
 
     // clientes
 
@@ -66,14 +70,19 @@ export default function Form({productsList, setProductsList}) {
 
     // pedido
 
-    const getClientId = dataClient && dataClient.find(client => client.name === formClient.name)
-    const clientId = getClientId.id
+    const clientId = selectedClient && selectedClient.id
+    const productsListDB = productsList && productsList.map((product) => {
+        return {
+            "id": product.id,
+            "qty": Number(product.qty)
+        }
+    })
 
     const createOrder = () => {
         const body = {
             delivery_date: formProducts.deliveryDate,
             fk_client: clientId,
-            products: productsList
+            products: productsListDB
         }
 
         axios.post("http://localhost:3003/orders", body, {
@@ -82,11 +91,10 @@ export default function Form({productsList, setProductsList}) {
             }
             })
             .then((response) => {
-                window.alert("Pedido realizado com sucesso.")
+                goToEndOrder(navigate)
             })
             .catch((error) => {
-                console.log(error.response)
-                // window.alert(`Ocorreu o seguinte erro: ${error.message}`)
+                setOrderError(error.response.data)
             })
     }
 
@@ -158,14 +166,14 @@ export default function Form({productsList, setProductsList}) {
             </div>
 
             <div id="end-order">
-            <label htmlFor="delivery-date"> Data de Entrega (DD/MM/AAAA) </label>
+                <label htmlFor="delivery-date"> Data de Entrega (DD/MM/AAAA) </label>
                 <input
                 id="delivery-date"
                 type="date"
                 name="deliveryDate"
                 value={formProducts.deliveryDate}
                 onChange={onChangeProducts}/>
-
+                {orderError && <p>{orderError}</p>}
                 <button onClick={addOrder}> Finalizar pedido </button>
             </div>
             </>
