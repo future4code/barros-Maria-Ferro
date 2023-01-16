@@ -35,7 +35,7 @@ export default function Form({productsList, setProductsList}) {
             setUpClient(!upClient)
         })
         .catch((error) => {
-            window.alert("ERRO! Verifique as informações e tente novamente.")
+            window.alert(`ERRO! ${error.response.data}`)
             clearClient()
         })
     }
