@@ -10,6 +10,11 @@ export const createClient = async (req: Request, res: Response): Promise<void> =
             errorCode = 422
             throw new Error("Insira o nome do usuário.");
         }
+
+        if (name.length < 2) {
+            errorCode = 422
+            throw new Error("Nome de usuário precisa ter mais de 2 caracteres.");
+        }
         
         const newClient = {name}
 

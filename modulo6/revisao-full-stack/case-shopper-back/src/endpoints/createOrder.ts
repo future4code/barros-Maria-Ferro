@@ -9,6 +9,11 @@ export const createOrder = async (req: Request, res: Response): Promise<void> =>
 
     try {
 
+        if (products.length === 0) {
+            errorCode = 422
+            throw new Error("Insira ao menos um produto na lista.");
+        }
+        
         if (!delivery_date) {
             errorCode = 422
             throw new Error("Insira data de entrega.");
@@ -17,11 +22,6 @@ export const createOrder = async (req: Request, res: Response): Promise<void> =>
         if (!fk_client) {
             errorCode = 422
             throw new Error("Id de usuário faltando.");
-        }
-
-        if (!products) {
-            errorCode = 422
-            throw new Error("Lista de produtos não encontrada.");
         }
 
         const idsProducts = products.map((product) => product.id)
