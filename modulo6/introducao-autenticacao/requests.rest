@@ -1,0 +1,22 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Matheus Rocha", 
+   "nickname": "Rocha", 
+   "email": "matheus@rocha.com",
+   "password": "982j8j9SLL"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "matheus@rocha.com",
+   "password": "982j8j9SLL"
+}
+
+###
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YjU0OTQ5LWJhMzEtNDYzOC1hMjZiLTkxN2RhZTY4ZmEyNCIsImlhdCI6MTY3NTIwNDk5MiwiZXhwIjoxNjc1MjA2NzkyfQ.8Dp_BtmDz2ySu56ez5tzwk_fXoS9hPT-kiUS2IfxVVs
