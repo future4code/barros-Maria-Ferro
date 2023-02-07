@@ -1,0 +1,22 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Luiza Fernandez", 
+   "nickname": "Lu", 
+   "email": "luiza@nct.com",
+   "password": "marklees2s2s2"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "luiza@nct.com",
+   "password": "marklees2s2s2"
+}
+
+###
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YjU0OTQ5LWJhMzEtNDYzOC1hMjZiLTkxN2RhZTY4ZmEyNCIsImlhdCI6MTY3NTIwNDk5MiwiZXhwIjoxNjc1MjA2NzkyfQ.8Dp_BtmDz2ySu56ez5tzwk_fXoS9hPT-kiUS2IfxVVs
