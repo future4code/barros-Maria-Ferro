@@ -1,0 +1,23 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Jade Thirlwall", 
+   "nickname": "Jade", 
+   "email": "jade@littlemix.com",
+   "password": "jade92lm2011",
+   "role": "admin"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "jade@littlemix.com",
+   "password": "jade92lm2011"
+}
+
+###
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzNTY3MmZkLTlmNTktNGI4MC04YmRmLTExZjUyZjlkNmVkZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NTgwODIyNSwiZXhwIjoxNjc1ODEwMDI1fQ.eIgy5o6sTURclw4WN84jVzdC31TdcShh6RkCgkfM0UQ
