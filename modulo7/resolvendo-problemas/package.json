@@ -1,0 +1,17 @@
+{
+  "name": "resolvendo-problemas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "exercicio01": "tsc && node ./build/exercicio01.js",
+    "exercicio02": "tsc && node ./build/exercicio02.js",
+    "exercicio03": "tsc && node ./build/exercicio03.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.2"
+  }
+}
